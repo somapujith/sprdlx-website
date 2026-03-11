@@ -5,7 +5,6 @@ import { Footer } from '../components/layout/Footer';
 import { HeroSection } from '../components/home/HeroSection';
 import { AboutSection } from '../components/home/AboutSection';
 import { TeamSection } from '../components/home/TeamSection';
-import { FoundersSection } from '../components/home/FoundersSection';
 import { ServicesSection } from '../components/home/ServicesSection';
 import { WhyADM } from '../components/home/WhyADM';
 import { MarqueeSection } from '../components/home/MarqueeSection';
@@ -49,7 +48,6 @@ export const Home: React.FC<HomeProps> = ({ isLoading = false }) => {
 
         <AboutSection />
         <TeamSection />
-        <FoundersSection />
         <ServicesSection />
         <MarqueeSection />
         <WhyADM />
