@@ -22,7 +22,7 @@ export const AboutSection: React.FC = () => {
       <div className="relative h-[360px] lg:h-[520px]">
         <motion.img 
           style={{ y: y1 }}
-          initial={{ opacity: 0, x: -50 }}
+          initial={{ opacity: 0, x: -90 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
