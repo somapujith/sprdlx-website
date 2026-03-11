@@ -52,17 +52,6 @@ export const AboutSection: React.FC = () => {
       </div>
 
       <div>
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="flex items-center gap-2.5 mb-4 text-[10px] tracking-[0.2em] text-primary font-bold lowercase"
-        >
-          <div className="w-2 h-2 rounded-full bg-primary animate-spin-slow" />
-          {t('about.label')}
-        </motion.div>
-
         <motion.h2 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}

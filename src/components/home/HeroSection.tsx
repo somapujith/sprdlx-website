@@ -54,15 +54,6 @@ export const HeroSection: React.FC = () => {
       
       <div className="relative z-20 w-full px-6 md:px-12 pb-0">
         <motion.div style={{ y: textY }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1 }}
-            className="text-[10px] tracking-[0.2em] text-primary font-semibold mb-4 uppercase"
-          >
-            {t('about.label')}
-          </motion.div>
-          
           <h1 className="mb-0 overflow-hidden text-[clamp(42px,5.5vw,88px)] font-extrabold text-white leading-[1.05] tracking-[-0.03em]">
             <div className="overflow-hidden">
               <motion.span 
