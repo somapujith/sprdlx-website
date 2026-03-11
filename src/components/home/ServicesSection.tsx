@@ -67,10 +67,10 @@ export const ServicesSection: React.FC = () => {
             className="group border-b border-white/10 relative cursor-none"
           >
             {/* Header Row */}
-            <div className={\lex items-center justify-between py-8 md:py-10 transition-colors duration-500 \\}>
+            <div className={`flex items-center justify-between py-8 md:py-10 transition-colors duration-500 ${hoveredIndex === i ? 'opacity-100' : 'opacity-40 hover:opacity-75'}`}>
               <div className="flex items-center gap-6 md:gap-12">
                 <span className="font-mono text-xs md:text-sm tracking-widest text-primary font-semibold">{service.num}</span>
-                <h3 className={\ont-sans text-[clamp(1.5rem,3.2vw,3.5rem)] md:text-[clamp(2rem,4vw,4.5rem)] font-bold tracking-[-0.02em] uppercase transition-transform duration-500 ease-out-expo origin-left \\}>
+                <h3 className={`font-sans text-[clamp(1.5rem,3.2vw,3.5rem)] md:text-[clamp(2rem,4vw,4.5rem)] font-bold tracking-[-0.02em] uppercase transition-transform duration-500 ease-out-expo origin-left ${hoveredIndex === i ? 'translate-x-2' : ''}`}>
                   {service.title}
                 </h3>
               </div>
