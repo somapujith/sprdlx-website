@@ -8,7 +8,10 @@ import { TeamSection } from '../components/home/TeamSection';
 import { FoundersSection } from '../components/home/FoundersSection';
 import { ServicesSection } from '../components/home/ServicesSection';
 import { WhyADM } from '../components/home/WhyADM';
+import { MarqueeSection } from '../components/home/MarqueeSection';
 import { ProjectsSection } from '../components/home/ProjectsSection';
+
+import { NoiseOverlay } from '../components/layout/NoiseOverlay';
 
 interface HomeProps {
   isLoading?: boolean;
@@ -17,6 +20,7 @@ interface HomeProps {
 export const Home: React.FC<HomeProps> = ({ isLoading = false }) => {
   return (
     <div className="min-h-screen bg-black text-white">
+      <NoiseOverlay />
       <Navbar visible={!isLoading} />
       <NavOverlay />
       
@@ -47,6 +51,7 @@ export const Home: React.FC<HomeProps> = ({ isLoading = false }) => {
         <TeamSection />
         <FoundersSection />
         <ServicesSection />
+        <MarqueeSection />
         <WhyADM />
         <ProjectsSection />
       </main>

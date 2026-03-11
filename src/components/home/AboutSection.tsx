@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { AnimatedCounter } from '../shared/AnimatedCounter';
+import { TextScrub } from '../shared/TextScrub';
 
 export const AboutSection: React.FC = () => {
   const { t } = useTranslation();
@@ -60,18 +61,15 @@ export const AboutSection: React.FC = () => {
           className="text-[clamp(32px,3.5vw,52px)] font-extrabold leading-[1.1] tracking-[-0.03em] text-white mb-6"
         >
           We Build Brands.<br/>
-          <em className="not-italic text-primary">We Build Futures.</em>
+          <em className="font-serif italic font-medium text-primary">We Build Futures.</em>
         </motion.h2>
 
-        <motion.p 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="text-[15px] text-white/50 leading-[1.8] mb-12"
-        >
-          SPRDLX is an AI Design Studio & Venture Builder. By fusing data-driven strategy with world-class design, we launch the next generation of consumer startups.
-        </motion.p>
+        <div className="mb-12">
+          <TextScrub
+            text="SPRDLX is an AI Design Studio & Venture Builder. By fusing data-driven strategy with world-class design, we launch the next generation of consumer startups."
+            className="text-[17px] text-white leading-[1.8] font-medium"
+          />
+        </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
           <motion.div 

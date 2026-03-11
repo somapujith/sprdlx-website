@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useUIStore } from '../../store/uiStore';
 import { Menu, X, ChevronDown } from 'lucide-react';
+import { MagneticButton } from '../shared/MagneticButton';
 
 interface NavbarProps {
   transparent?: boolean;
@@ -68,17 +69,18 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true, visible = tr
 
       <div className="hidden lg:flex items-center gap-9">
         {navLinks.map((link, i) => (
-          <motion.a
-            key={link.label}
-            href={link.href}
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: i * 0.05, duration: 0.4, ease: 'easeOut' }}
-            className="relative text-[13px] font-medium text-white/75 hover:text-white tracking-[0.04em] pb-[3px] group"
-          >
-            {link.label}
-            <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary scale-x-0 origin-left transition-transform duration-300 ease-out-expo group-hover:scale-x-100" />
-          </motion.a>
+          <MagneticButton key={link.label}>
+            <motion.a
+              href={link.href}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.05, duration: 0.4, ease: 'easeOut' }}
+              className="block relative text-[13px] font-medium text-white/75 hover:text-white tracking-[0.04em] pb-[3px] group"
+            >
+              {link.label}
+              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-primary scale-x-0 origin-left transition-transform duration-300 ease-out-expo group-hover:scale-x-100" />
+            </motion.a>
+          </MagneticButton>
         ))}
       </div>
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Instagram, Linkedin, Twitter, ArrowUpRight } from 'lucide-react';
+import { MagneticButton } from '../shared/MagneticButton';
 
 export const Footer: React.FC = () => {
   const { t } = useTranslation();
@@ -34,17 +35,19 @@ export const Footer: React.FC = () => {
             Let's build something<br />
             <span className="text-white/20">worth remembering.</span>
           </h2>
-          <a
-            href="mailto:Hello@sprdlx.com"
-            className="inline-flex items-center gap-3 group"
-          >
-            <span className="text-[clamp(1rem,2vw,1.25rem)] text-white/50 hover:text-white transition-colors duration-300 border-b border-white/20 group-hover:border-primary pb-1 transition-all">
-              Hello@sprdlx.com
-            </span>
-            <span className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300">
-              <ArrowUpRight size={16} className="text-white/50 group-hover:text-white transition-colors" />
-            </span>
-          </a>
+          <MagneticButton className="inline-flex w-fit">
+            <a
+              href="mailto:Hello@sprdlx.com"
+              className="inline-flex items-center gap-3 group"
+            >
+              <span className="text-[clamp(1rem,2vw,1.25rem)] text-white/50 hover:text-white transition-colors duration-300 border-b border-white/20 group-hover:border-primary pb-1 transition-all">
+                Hello@sprdlx.com
+              </span>
+              <span className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300">
+                <ArrowUpRight size={16} className="text-white/50 group-hover:text-white transition-colors" />
+              </span>
+            </a>
+          </MagneticButton>
         </motion.div>
       </div>
 

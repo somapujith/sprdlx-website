@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { ParallaxImage } from '../shared/ParallaxImage';
 
 export const FoundersSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -40,11 +41,11 @@ export const FoundersSection: React.FC = () => {
               key={i} 
               className="flex-none w-[280px] flex flex-col items-center p-8 px-6 border border-white/5 transition-all duration-300 hover:border-primary/30 hover:-translate-y-1 group"
             >
-              <img 
+              <ParallaxImage 
                 src={founder.img} 
                 alt={founder.name} 
-                loading="lazy"
-                className="w-[100px] h-[100px] rounded-full object-cover border-2 border-white/10 mb-4 transition-shadow duration-300 group-hover:shadow-[0_0_0_4px_rgba(232,93,38,0.3)]"
+                speed={0.15}
+                containerClassName="w-[100px] h-[100px] rounded-full border-2 border-white/10 mb-4 transition-shadow duration-300 group-hover:shadow-[0_0_0_4px_rgba(232,93,38,0.3)]"
               />
               <div className="text-base font-bold text-white mb-1">{founder.name}</div>
               <div className="text-[11px] text-primary tracking-[0.1em] font-semibold">{founder.title}</div>

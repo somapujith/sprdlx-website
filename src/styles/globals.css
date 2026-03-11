@@ -12,6 +12,7 @@
 
   --font-sans: "Inter", "Neue Haas Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Anton", "Neue Haas Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
 
   /* Custom easing */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
