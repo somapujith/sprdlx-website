@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "./animations.css";
 
+@font-face {
+  font-family: 'Franie';
+  src: local('Franie Test Bold'), local('FranieTest-Bold'), local('Franie Test'), local('Franie');
+  font-weight: bold;
+}
+
 @theme {
   --color-primary: #E85D26;
   --color-dark: #000000;
