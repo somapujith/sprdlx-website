@@ -22,7 +22,7 @@ export const WhyADM: React.FC = () => {
   ];
 
   return (
-    <section id="why" className="bg-dark text-white py-[120px] px-6 md:px-12">
+    <section id="why" className="bg-black text-white min-h-screen flex flex-col justify-center py-[80px] px-6 md:px-12">
       <motion.div 
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}

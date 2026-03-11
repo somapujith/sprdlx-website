@@ -16,7 +16,8 @@ export const AboutSection: React.FC = () => {
   const y3 = useTransform(scrollYProgress, [0, 1], ["-50%", "0%"]);
 
   return (
-    <section ref={containerRef} id="about" className="bg-white py-[100px] px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+    <section ref={containerRef} id="about" className="bg-black min-h-screen flex items-center py-[80px] px-6 md:px-12">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center w-full">
       <div className="relative h-[360px] lg:h-[520px]">
         <motion.img 
           style={{ y: y1 }}
@@ -34,7 +35,7 @@ export const AboutSection: React.FC = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="absolute w-[52%] h-[62%] bottom-0 right-0 z-20 border-4 border-white object-cover rounded-sm"
+          className="absolute w-[52%] h-[62%] bottom-0 right-0 z-20 border-4 border-black object-cover rounded-sm"
           src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80" 
           alt="Design details" 
         />
@@ -44,7 +45,7 @@ export const AboutSection: React.FC = () => {
           whileInView={{ opacity: 1, y: "-50%" }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="absolute w-[38%] h-[45%] left-[55%] z-30 border-4 border-white object-cover rounded-sm"
+          className="absolute w-[38%] h-[45%] left-[55%] z-30 border-4 border-black object-cover rounded-sm"
           src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80" 
           alt="Technical innovation" 
         />
@@ -67,7 +68,7 @@ export const AboutSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-[clamp(32px,3.5vw,52px)] font-extrabold leading-[1.1] tracking-[-0.03em] text-dark mb-6"
+          className="text-[clamp(32px,3.5vw,52px)] font-extrabold leading-[1.1] tracking-[-0.03em] text-white mb-6"
         >
           We Build Brands.<br/>
           <em className="not-italic text-primary">We Build Futures.</em>
@@ -78,7 +79,7 @@ export const AboutSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="text-[15px] text-text-muted leading-[1.8] mb-12"
+          className="text-[15px] text-white/50 leading-[1.8] mb-12"
         >
           SPRDLX is an AI Design Studio & Venture Builder. By fusing data-driven strategy with world-class design, we launch the next generation of consumer startups.
         </motion.p>
@@ -91,10 +92,10 @@ export const AboutSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
             className="border-l-2 border-primary pl-4"
           >
-            <div className="text-[clamp(32px,3vw,48px)] font-extrabold text-dark tracking-[-0.04em] leading-none flex items-start gap-[3px]">
+            <div className="text-[clamp(32px,3vw,48px)] font-extrabold text-white tracking-[-0.04em] leading-none flex items-start gap-[3px]">
               <AnimatedCounter target={5} suffix="+" />
             </div>
-            <div className="text-[11px] text-text-muted tracking-[0.05em] mt-1.5 leading-[1.4]">
+            <div className="text-[11px] text-white/50 tracking-[0.05em] mt-1.5 leading-[1.4]">
               {t('about.stat_ventures_label')}
             </div>
           </motion.div>
@@ -106,10 +107,10 @@ export const AboutSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
             className="border-l-2 border-primary pl-4"
           >
-            <div className="text-[clamp(32px,3vw,48px)] font-extrabold text-dark tracking-[-0.04em] leading-none flex items-start gap-[3px]">
+            <div className="text-[clamp(32px,3vw,48px)] font-extrabold text-white tracking-[-0.04em] leading-none flex items-start gap-[3px]">
               <AnimatedCounter target={5} suffix="+" />
             </div>
-            <div className="text-[11px] text-text-muted tracking-[0.05em] mt-1.5 leading-[1.4]">
+            <div className="text-[11px] text-white/50 tracking-[0.05em] mt-1.5 leading-[1.4]">
               {t('about.stat_models_label')}
             </div>
           </motion.div>
@@ -121,14 +122,15 @@ export const AboutSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
             className="border-l-2 border-primary pl-4"
           >
-            <div className="text-[clamp(32px,3vw,48px)] font-extrabold text-dark tracking-[-0.04em] leading-none flex items-start gap-[3px]">
+            <div className="text-[clamp(32px,3vw,48px)] font-extrabold text-white tracking-[-0.04em] leading-none flex items-start gap-[3px]">
               <AnimatedCounter target={7} suffix="+" />
             </div>
-            <div className="text-[11px] text-text-muted tracking-[0.05em] mt-1.5 leading-[1.4]">
+            <div className="text-[11px] text-white/50 tracking-[0.05em] mt-1.5 leading-[1.4]">
               {t('about.stat_builders_label')}
             </div>
           </motion.div>
         </div>
+      </div>
       </div>
     </section>
   );

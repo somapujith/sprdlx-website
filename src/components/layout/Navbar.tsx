@@ -48,7 +48,7 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true, visible = tr
       initial={{ y: '-100%' }}
       animate={{
         y: visible ? '0%' : '-100%',
-        backgroundColor: scrolled ? 'rgba(26, 26, 26, 0.96)' : (transparent ? 'rgba(26, 26, 26, 0)' : 'rgba(26, 26, 26, 1)'),
+        backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.96)' : (transparent ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 1)'),
         backdropFilter: scrolled ? 'blur(12px)' : 'blur(0px)',
         boxShadow: scrolled ? '0 4px 30px rgba(0, 0, 0, 0.1)' : 'none',
       }}
@@ -97,7 +97,7 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true, visible = tr
                 animate={{ height: 'auto', opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="absolute top-full right-0 mt-2 bg-dark border border-white/10 rounded overflow-hidden flex flex-col"
+                className="absolute top-full right-0 mt-2 bg-black border border-white/10 rounded overflow-hidden flex flex-col"
               >
                 {languages.map((l) => (
                   <button

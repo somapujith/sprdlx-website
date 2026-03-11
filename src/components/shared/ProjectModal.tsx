@@ -43,13 +43,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
             animate={{ y: 0 }}
             exit={{ y: '100%' }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full h-[90vh] bg-white grid grid-cols-1 lg:grid-cols-2 overflow-hidden z-10"
+            className="relative w-full h-[90vh] bg-[#111] grid grid-cols-1 lg:grid-cols-2 overflow-hidden z-10"
           >
             <button 
               onClick={onClose}
-              className="absolute top-5 right-5 z-20 w-10 h-10 bg-black/5 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-primary group cursor-none"
+              className="absolute top-5 right-5 z-20 w-10 h-10 bg-white/10 flex items-center justify-center rounded-full transition-colors duration-200 hover:bg-primary group cursor-none"
             >
-              <X size={18} className="text-dark group-hover:text-white transition-colors" />
+              <X size={18} className="text-white group-hover:text-white transition-colors" />
             </button>
 
             <div className="relative h-[45vh] lg:h-full bg-[#111] overflow-hidden">
@@ -78,30 +78,30 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
             </div>
 
             <div className="p-8 md:p-12 overflow-y-auto">
-              <h2 className="text-[28px] font-extrabold tracking-[-0.02em] text-dark mb-6">
+              <h2 className="text-[28px] font-extrabold tracking-[-0.02em] text-white mb-6">
                 {project.title}
               </h2>
               
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                <div className="p-4 bg-[#f8f8f8]">
+                <div className="p-4 bg-white/5">
                   <div className="text-[10px] tracking-[0.12em] text-primary font-bold mb-1">LOCATION</div>
-                  <div className="text-[13px] text-dark font-semibold">{project.location}</div>
+                  <div className="text-[13px] text-white font-semibold">{project.location}</div>
                 </div>
-                <div className="p-4 bg-[#f8f8f8]">
+                <div className="p-4 bg-white/5">
                   <div className="text-[10px] tracking-[0.12em] text-primary font-bold mb-1">INDUSTRY</div>
-                  <div className="text-[13px] text-dark font-semibold">{project.industry}</div>
+                  <div className="text-[13px] text-white font-semibold">{project.industry}</div>
                 </div>
-                <div className="p-4 bg-[#f8f8f8]">
+                <div className="p-4 bg-white/5">
                   <div className="text-[10px] tracking-[0.12em] text-primary font-bold mb-1">SCOPE OF WORK</div>
-                  <div className="text-[13px] text-dark font-semibold">{project.scope}</div>
+                  <div className="text-[13px] text-white font-semibold">{project.scope}</div>
                 </div>
-                <div className="p-4 bg-[#f8f8f8]">
+                <div className="p-4 bg-white/5">
                   <div className="text-[10px] tracking-[0.12em] text-primary font-bold mb-1">SIZE</div>
-                  <div className="text-[13px] text-dark font-semibold">{project.size}</div>
+                  <div className="text-[13px] text-white font-semibold">{project.size}</div>
                 </div>
               </div>
               
-              <p className="text-sm text-text-muted leading-[1.8]">
+              <p className="text-sm text-white/50 leading-[1.8]">
                 {project.desc}
               </p>
             </div>

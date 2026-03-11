@@ -18,6 +18,8 @@ export default function App() {
     // Initialize Lenis for smooth scrolling
     const lenis = new Lenis({
       autoRaf: true,
+      smoothWheel: true,
+      duration: 1.2,
     });
 
     // Custom Cursor Logic
@@ -27,17 +29,15 @@ export default function App() {
       mx = e.clientX;
       my = e.clientY;
       if (cursorRef.current) {
-        cursorRef.current.style.left = `${mx}px`;
-        cursorRef.current.style.top = `${my}px`;
+        cursorRef.current.style.transform = `translate(${mx - 5}px, ${my - 5}px)`;
       }
     };
 
     const animRing = () => {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
+      rx += (mx - rx) * 0.15;
+      ry += (my - ry) * 0.15;
       if (ringRef.current) {
-        ringRef.current.style.left = `${rx}px`;
-        ringRef.current.style.top = `${ry}px`;
+        ringRef.current.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
       }
       requestAnimationFrame(animRing);
     };

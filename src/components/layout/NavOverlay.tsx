@@ -22,7 +22,7 @@ export const NavOverlay: React.FC = () => {
           animate={{ clipPath: 'circle(150% at calc(100% - 72px) 36px)' }}
           exit={{ clipPath: 'circle(0% at calc(100% - 72px) 36px)' }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-40 bg-[#1a1a1a] flex flex-col"
+          className="fixed inset-0 z-40 bg-black flex flex-col"
         >
           <div className="flex-1 flex overflow-hidden pt-[72px]">
             <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 grid-rows-3 lg:grid-rows-2 p-6 lg:p-12 gap-0">

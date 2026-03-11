@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-[#1a1a1a] border-t border-white/5 py-10 px-6 md:px-12">
+    <footer className="bg-black border-t border-white/5 py-10 px-6 md:px-12">
       <div className="flex flex-col md:flex-row justify-between gap-10 mb-10">
         {/* Brand + newsletter */}
         <motion.div

@@ -11,7 +11,7 @@ export const FoundersSection: React.FC = () => {
   ];
 
   return (
-    <section id="founders" className="bg-dark text-white py-[100px] px-6 md:px-12 overflow-hidden">
+    <section id="founders" className="bg-black text-white min-h-screen flex flex-col justify-center py-[80px] px-6 md:px-12 overflow-hidden">
       <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-10">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -43,6 +43,7 @@ export const FoundersSection: React.FC = () => {
               <img 
                 src={founder.img} 
                 alt={founder.name} 
+                loading="lazy"
                 className="w-[100px] h-[100px] rounded-full object-cover border-2 border-white/10 mb-4 transition-shadow duration-300 group-hover:shadow-[0_0_0_4px_rgba(232,93,38,0.3)]"
               />
               <div className="text-base font-bold text-white mb-1">{founder.name}</div>

@@ -51,7 +51,7 @@ export const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete }) => {
   return (
     <div
       ref={containerRef}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-[#050505]"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black"
     >
       <svg viewBox="0 0 1000 300" className="w-full max-w-6xl px-4">
         <text

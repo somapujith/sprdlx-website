@@ -42,6 +42,7 @@ const TeamCard: React.FC<{ member: TeamMember; index: number }> = ({ member, ind
           src={member.img}
           alt={member.name}
           draggable={false}
+          loading="lazy"
           className="absolute inset-0 w-full h-full object-cover select-none transition-all duration-700 ease-out"
           style={{
             filter: hovered ? 'grayscale(0%)' : 'grayscale(100%)',
@@ -83,7 +84,7 @@ const TeamCard: React.FC<{ member: TeamMember; index: number }> = ({ member, ind
 
 export const TeamSection: React.FC = () => {
   return (
-    <section id="team" className="bg-[#0a0a0a] py-[110px] px-6 md:px-12">
+    <section id="team" className="bg-black min-h-screen flex flex-col justify-center py-[80px] px-6 md:px-12">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
         <div>
           <motion.div

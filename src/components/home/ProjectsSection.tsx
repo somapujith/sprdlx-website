@@ -77,7 +77,7 @@ export const ProjectsSection: React.FC = () => {
   const filteredProjects = projects.filter(p => activeFilter === 'all' ? true : p.category === activeFilter);
 
   return (
-    <section id="projects" className="bg-[#f8f8f6] py-[100px] px-6 md:px-12">
+    <section id="projects" className="bg-black min-h-screen flex flex-col justify-center py-[80px] px-6 md:px-12">
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 gap-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -89,7 +89,7 @@ export const ProjectsSection: React.FC = () => {
             <div className="w-2 h-2 rounded-full bg-primary animate-spin-slow" />
             featured work
           </div>
-          <h2 className="text-[clamp(32px,3.5vw,52px)] font-extrabold tracking-[-0.03em] text-dark leading-[1.1]">
+          <h2 className="text-[clamp(32px,3.5vw,52px)] font-extrabold tracking-[-0.03em] text-white leading-[1.1]">
             Ventures We've<br/>Brought to Life
           </h2>
         </motion.div>
@@ -99,11 +99,11 @@ export const ProjectsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="flex border border-gray-300 relative"
+          className="flex border border-white/20 relative"
         >
           <button 
             onClick={() => setActiveFilter('all')}
-            className={`px-6 py-2.5 text-xs font-semibold tracking-[0.05em] transition-colors duration-200 relative z-10 ${activeFilter === 'all' ? 'text-white' : 'text-text-muted'}`}
+            className={`px-6 py-2.5 text-xs font-semibold tracking-[0.05em] transition-colors duration-200 relative z-10 ${activeFilter === 'all' ? 'text-white' : 'text-white/50'}`}
           >
             Full Scope
             {activeFilter === 'all' && (
@@ -112,7 +112,7 @@ export const ProjectsSection: React.FC = () => {
           </button>
           <button 
             onClick={() => setActiveFilter('others')}
-            className={`px-6 py-2.5 text-xs font-semibold tracking-[0.05em] transition-colors duration-200 relative z-10 ${activeFilter === 'others' ? 'text-white' : 'text-text-muted'}`}
+            className={`px-6 py-2.5 text-xs font-semibold tracking-[0.05em] transition-colors duration-200 relative z-10 ${activeFilter === 'others' ? 'text-white' : 'text-white/50'}`}
           >
             Strategy
             {activeFilter === 'others' && (
@@ -133,17 +133,19 @@ export const ProjectsSection: React.FC = () => {
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
               onClick={() => setSelectedProject(project)}
-              className="relative overflow-hidden bg-white cursor-none group transition-shadow duration-300 hover:shadow-[0_20px_60px_rgba(0,0,0,0.12)]"
+              className="relative overflow-hidden bg-[#111] cursor-none group transition-shadow duration-300 hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
             >
-              <div className="relative h-[280px] overflow-hidden">
+              <div className="relative h-[280px] overflow-hidden bg-black">
                 <img 
                   src={project.images[0]} 
                   alt={project.title} 
+                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-600 ease-out-expo group-hover:-translate-y-2"
                 />
                 <img 
                   src={project.images[1]} 
                   alt={project.title} 
+                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-600 ease-out-expo group-hover:opacity-100"
                 />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-primary/90 rounded-full flex items-center justify-center opacity-0 transition-opacity duration-300 z-10 group-hover:opacity-100">
@@ -152,12 +154,13 @@ export const ProjectsSection: React.FC = () => {
                 <img 
                   src={project.logo} 
                   alt="Logo" 
+                  loading="lazy"
                   className="absolute bottom-4 left-4 z-10 max-h-8 max-w-[120px] opacity-0 brightness-0 invert transition-opacity duration-300 group-hover:opacity-100"
                 />
               </div>
               <div className="p-5">
-                <div className="text-[15px] font-bold text-dark mb-1.5">{project.title}</div>
-                <div className="text-xs text-text-muted leading-[1.6] line-clamp-2">{project.desc}</div>
+                <div className="text-[15px] font-bold text-white mb-1.5">{project.title}</div>
+                <div className="text-xs text-white/50 leading-[1.6] line-clamp-2">{project.desc}</div>
                 <div className="flex flex-wrap gap-2 mt-3">
                   {project.scope.split(' | ').map((tag) => (
                     <span key={tag} className="text-[10px] tracking-[0.08em] text-primary font-semibold bg-primary/10 px-2 py-1">{tag}</span>

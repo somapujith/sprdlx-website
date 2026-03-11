@@ -34,8 +34,8 @@ export const ServicesSection: React.FC = () => {
   ];
 
   return (
-    <section id="services" className="bg-white pt-[100px]">
-      <div className="px-6 md:px-12 pb-16">
+    <section id="services" className="bg-black min-h-screen flex flex-col">
+      <div className="px-6 md:px-12 pt-[80px] pb-12">
         <motion.div 
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -52,7 +52,7 @@ export const ServicesSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
-          className="text-[clamp(32px,3.5vw,52px)] font-extrabold tracking-[-0.03em] text-dark max-w-[600px] leading-[1.1]"
+          className="text-[clamp(32px,3.5vw,52px)] font-extrabold tracking-[-0.03em] text-white max-w-[600px] leading-[1.1]"
         >
           {t('services.heading')}
         </motion.h2>
@@ -62,24 +62,24 @@ export const ServicesSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-[15px] text-text-muted leading-[1.8] max-w-[520px] mt-4"
+          className="text-[15px] text-white/50 leading-[1.8] max-w-[520px] mt-4"
         >
           {t('services.body')}
         </motion.p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="border-r border-gray-200">
+      <div className="grid grid-cols-1 lg:grid-cols-2 flex-1">
+        <div className="border-r border-white/10">
           {services.map((service, i) => (
             <div 
               key={service.num}
               onClick={() => setActiveService(i)}
-              className={`flex items-center gap-5 p-7 px-12 cursor-none border-b border-gray-200 border-l-[3px] transition-all duration-300 ${activeService === i ? 'border-l-primary bg-[#fafafa]' : 'border-l-transparent bg-white'}`}
+              className={`flex items-center gap-5 p-7 px-12 cursor-none border-b border-white/10 border-l-[3px] transition-all duration-300 ${activeService === i ? 'border-l-primary bg-white/5' : 'border-l-transparent bg-transparent'}`}
             >
-              <div className={`text-[11px] font-semibold tracking-[0.08em] transition-colors ${activeService === i ? 'text-primary' : 'text-text-muted'}`}>
+              <div className={`text-[11px] font-semibold tracking-[0.08em] transition-colors ${activeService === i ? 'text-primary' : 'text-white/40'}`}>
                 {service.num}
               </div>
-              <div className="text-lg font-bold text-dark tracking-[-0.01em]">
+              <div className="text-lg font-bold text-white tracking-[-0.01em]">
                 {service.title}
               </div>
             </div>
@@ -99,6 +99,7 @@ export const ServicesSection: React.FC = () => {
               <img 
                 src={services[activeService].img} 
                 alt={services[activeService].title} 
+                loading="lazy"
                 className="w-full h-full object-cover"
               />
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-12 pt-24 pb-8">

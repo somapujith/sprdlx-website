@@ -3,12 +3,12 @@
 
 @theme {
   --color-primary: #E85D26;
-  --color-dark: #1A1A1A;
-  --color-surface: #111111;
-  --color-text-main: #444444;
-  --color-text-muted: #888888;
+  --color-dark: #000000;
+  --color-surface: #0a0a0a;
+  --color-text-main: #e0e0e0;
+  --color-text-muted: #999999;
   --color-white: #FFFFFF;
-  --color-bg: #F8F8F8;
+  --color-bg: #000000;
 
   --font-sans: "Inter", "Neue Haas Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Anton", "Neue Haas Grotesk", ui-sans-serif, system-ui, sans-serif;
@@ -35,7 +35,7 @@
 }
 
 body {
-  background-color: var(--color-white);
+  background-color: #000000;
   color: var(--color-text-main);
   overflow-x: hidden;
   font-family: var(--font-sans);
@@ -72,6 +72,7 @@ html.lenis, html.lenis body {
   border-radius: 50%;
   pointer-events: none;
   z-index: 99999;
+  will-change: transform;
   transform: translate(-50%, -50%);
   transition: width 0.2s, height 0.2s, background 0.2s;
   mix-blend-mode: normal;
@@ -85,8 +86,9 @@ html.lenis, html.lenis body {
   border-radius: 50%;
   pointer-events: none;
   z-index: 99998;
+  will-change: transform;
   transform: translate(-50%, -50%);
-  transition: transform 0.12s var(--ease-out-expo), width 0.3s, height 0.3s, opacity 0.3s;
+  transition: width 0.3s, height 0.3s, opacity 0.3s;
 }
 
 body:hover #cursor {

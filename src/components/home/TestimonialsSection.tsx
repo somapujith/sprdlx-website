@@ -54,7 +54,7 @@ export const TestimonialsSection: React.FC = () => {
   };
 
   return (
-    <section id="testimonials" className="bg-white py-[100px] px-6 md:px-12 overflow-hidden">
+    <section id="testimonials" className="bg-black min-h-screen flex flex-col justify-center py-[80px] px-6 md:px-12 overflow-hidden">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -66,7 +66,7 @@ export const TestimonialsSection: React.FC = () => {
             <div className="w-2 h-2 rounded-full bg-primary animate-spin-slow" />
             client reviews
           </div>
-          <h2 className="text-[clamp(32px,3.5vw,52px)] font-extrabold tracking-[-0.03em] text-dark leading-[1.1]">
+          <h2 className="text-[clamp(32px,3.5vw,52px)] font-extrabold tracking-[-0.03em] text-white leading-[1.1]">
             What Our<br/>Builders Say
           </h2>
         </motion.div>
@@ -74,15 +74,15 @@ export const TestimonialsSection: React.FC = () => {
         <div className="flex gap-3">
           <button 
             onClick={handlePrev}
-            className="w-11 h-11 border border-gray-300 flex items-center justify-center transition-all duration-200 hover:bg-primary hover:border-primary group cursor-none"
+            className="w-11 h-11 border border-white/20 flex items-center justify-center transition-all duration-200 hover:bg-primary hover:border-primary group cursor-none"
           >
-            <ChevronLeft size={18} className="text-dark group-hover:text-white transition-colors" />
+            <ChevronLeft size={18} className="text-white group-hover:text-white transition-colors" />
           </button>
           <button 
             onClick={handleNext}
-            className="w-11 h-11 border border-gray-300 flex items-center justify-center transition-all duration-200 hover:bg-primary hover:border-primary group cursor-none"
+            className="w-11 h-11 border border-white/20 flex items-center justify-center transition-all duration-200 hover:bg-primary hover:border-primary group cursor-none"
           >
-            <ChevronRight size={18} className="text-dark group-hover:text-white transition-colors" />
+            <ChevronRight size={18} className="text-white group-hover:text-white transition-colors" />
           </button>
         </div>
       </div>
@@ -96,16 +96,17 @@ export const TestimonialsSection: React.FC = () => {
           {testimonials.map((testi, i) => (
             <div 
               key={i} 
-              className="flex-none w-full md:w-[calc(50%-12px)] p-10 border border-gray-200 transition-colors duration-300 hover:border-primary/30 group"
+              className="flex-none w-full md:w-[calc(50%-12px)] p-10 border border-white/10 transition-colors duration-300 hover:border-primary/30 group"
             >
               <img 
                 src={testi.logo} 
                 alt={testi.company} 
-                className="max-h-9 max-w-[140px] mb-5 object-contain grayscale opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
+                loading="lazy"
+                className="max-h-9 max-w-[140px] mb-5 object-contain brightness-0 invert opacity-60 transition-all duration-300 group-hover:grayscale-0 group-hover:opacity-100"
               />
-              <div className="text-[15px] font-bold text-dark mb-1">{testi.company}</div>
+              <div className="text-[15px] font-bold text-white mb-1">{testi.company}</div>
               <div className="text-[10px] tracking-[0.1em] text-primary font-semibold mb-5">{testi.scope}</div>
-              <p className="text-sm text-text-muted leading-[1.8]">
+              <p className="text-sm text-white/50 leading-[1.8]">
                 {testi.quote}
               </p>
             </div>
@@ -118,7 +119,7 @@ export const TestimonialsSection: React.FC = () => {
           <button
             key={i}
             onClick={() => setActiveIndex(i)}
-            className={`h-2 rounded-full cursor-none transition-all duration-300 ease-out-expo ${activeIndex === i ? 'w-6 bg-primary' : 'w-2 bg-gray-300'}`}
+            className={`h-2 rounded-full cursor-none transition-all duration-300 ease-out-expo ${activeIndex === i ? 'w-6 bg-primary' : 'w-2 bg-white/20'}`}
           />
         ))}
       </div>
