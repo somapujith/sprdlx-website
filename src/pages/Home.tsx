@@ -9,7 +9,6 @@ import { FoundersSection } from '../components/home/FoundersSection';
 import { ServicesSection } from '../components/home/ServicesSection';
 import { WhyADM } from '../components/home/WhyADM';
 import { ProjectsSection } from '../components/home/ProjectsSection';
-import { TestimonialsSection } from '../components/home/TestimonialsSection';
 
 interface HomeProps {
   isLoading?: boolean;
@@ -50,7 +49,6 @@ export const Home: React.FC<HomeProps> = ({ isLoading = false }) => {
         <ServicesSection />
         <WhyADM />
         <ProjectsSection />
-        <TestimonialsSection />
       </main>
 
       <Footer />
