@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Play } from 'lucide-react';
+﻿import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion';
 import { ProjectModal } from '../shared/ProjectModal';
 
 export const ProjectsSection: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  // Floating cursor logic
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  
+  const springConfig = { damping: 25, stiffness: 120, mass: 0.5 };
+  const imageX = useSpring(mouseX, springConfig);
+  const imageY = useSpring(mouseY, springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
+  };
 
   const projects = [
     {
@@ -76,20 +89,60 @@ export const ProjectsSection: React.FC = () => {
 
   const filteredProjects = projects.filter(p => activeFilter === 'all' ? true : p.category === activeFilter);
 
+  // Clean up hovered index on filter change
+  useEffect(() => {
+    setHoveredIndex(null);
+  }, [activeFilter]);
+
   return (
-    <section id="projects" className="bg-black min-h-screen flex flex-col justify-center py-[80px] px-6 md:px-12">
-      <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 gap-8">
+    <section id="projects" className="bg-black min-h-screen flex flex-col justify-start py-[120px] px-6 md:px-12 relative overflow-hidden" onMouseMove={handleMouseMove}>
+      
+      {/* Floating Image Cursor Reveal (Desktop only) */}
+      <motion.div
+        className="pointer-events-none fixed z-40 hidden md:block overflow-hidden bg-surface"
+        style={{
+          x: imageX,
+          y: imageY,
+          translateX: '-50%',
+          translateY: '-50%',
+          width: 400,
+          height: 480,
+          opacity: hoveredIndex !== null ? 1 : 0,
+          scale: hoveredIndex !== null ? 1 : 0.8,
+        }}
+        transition={{ opacity: { duration: 0.3 }, scale: { duration: 0.4, ease: [0.16, 1, 0.3, 1] } }}
+      >
+        <div className="w-full h-full relative">
+          {filteredProjects.map((project, i) => (
+            <img
+              key={`float-img-${project.id}`}
+              src={project.images[0]}
+              alt={project.title}
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out-custom ${hoveredIndex === i ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
+            />
+          ))}
+          {/* Overlay text / "View Project" on image */}
+          <div className="absolute inset-0 bg-black/20 flex flex-col items-center justify-center opacity-0 transition-opacity duration-300">
+             <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center text-white text-[10px] tracking-widest uppercase font-bold transform -rotate-12">
+               View
+             </div>
+          </div>
+        </div>
+      </motion.div>
+
+      <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-16 gap-8">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative z-10"
         >
           <div className="flex items-center gap-2.5 mb-4 text-[10px] tracking-[0.2em] text-primary font-bold lowercase">
             <div className="w-2 h-2 rounded-full bg-primary animate-spin-slow" />
             featured work
           </div>
-          <h2 className="text-[clamp(32px,3.5vw,52px)] font-extrabold tracking-[-0.03em] text-white leading-[1.1]">
+          <h2 className="text-[clamp(40px,6vw,80px)] font-sans font-extrabold tracking-tighter leading-[0.95]">
             Ventures We've<br/>Brought to Life
           </h2>
         </motion.div>
@@ -99,7 +152,7 @@ export const ProjectsSection: React.FC = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="flex border border-white/20 relative"
+          className="flex border border-white/20 relative z-10"
         >
           <button 
             onClick={() => setActiveFilter('all')}
@@ -107,7 +160,7 @@ export const ProjectsSection: React.FC = () => {
           >
             Full Scope
             {activeFilter === 'all' && (
-              <motion.div layoutId="filter-bg" className="absolute inset-0 bg-primary -z-10" />
+              <motion.div layoutId="projects-filter-bg" className="absolute inset-0 bg-primary -z-10" />
             )}
           </button>
           <button 
@@ -116,61 +169,60 @@ export const ProjectsSection: React.FC = () => {
           >
             Strategy
             {activeFilter === 'others' && (
-              <motion.div layoutId="filter-bg" className="absolute inset-0 bg-primary -z-10" />
+              <motion.div layoutId="projects-filter-bg" className="absolute inset-0 bg-primary -z-10" />
             )}
           </button>
         </motion.div>
       </div>
 
-      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="w-full flex-1 flex flex-col justify-center border-t border-white/10 relative z-10">
         <AnimatePresence mode="popLayout">
           {filteredProjects.map((project, i) => (
             <motion.div
               layout
               key={project.id}
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.5, delay: i * 0.08, ease: "easeOut" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, delay: i * 0.05, ease: "easeOut" }}
+              onMouseEnter={() => setHoveredIndex(i)}
+              onMouseLeave={() => setHoveredIndex(null)}
               onClick={() => setSelectedProject(project)}
-              className="relative overflow-hidden bg-[#111] cursor-none group transition-shadow duration-300 hover:shadow-[0_20px_60px_rgba(0,0,0,0.3)]"
+              className={`group flex flex-col md:flex-row items-start md:items-center justify-between py-10 md:py-14 border-b border-white/10 cursor-none transition-opacity duration-300 ${hoveredIndex !== null && hoveredIndex !== i ? 'opacity-30' : 'opacity-100'}`}
             >
-              <div className="relative h-[280px] overflow-hidden bg-black">
-                <img 
-                  src={project.images[0]} 
-                  alt={project.title} 
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-600 ease-out-expo group-hover:-translate-y-2"
-                />
-                <img 
-                  src={project.images[1]} 
-                  alt={project.title} 
-                  loading="lazy"
-                  className="absolute inset-0 w-full h-full object-cover opacity-0 transition-all duration-600 ease-out-expo group-hover:opacity-100"
-                />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-primary/90 rounded-full flex items-center justify-center opacity-0 transition-opacity duration-300 z-10 group-hover:opacity-100">
-                  <Play size={16} fill="white" className="text-white ml-1" />
-                </div>
-                <img 
-                  src={project.logo} 
-                  alt="Logo" 
-                  loading="lazy"
-                  className="absolute bottom-4 left-4 z-10 max-h-8 max-w-[120px] opacity-0 brightness-0 invert transition-opacity duration-300 group-hover:opacity-100"
-                />
+              {/* Left Side: Number & Giant Title */}
+              <div className="flex items-center gap-6 md:gap-12 w-full md:w-auto mb-6 md:mb-0">
+                <span className="font-mono text-xs md:text-sm text-primary tracking-widest">
+                  {(i + 1).toString().padStart(2, '0')}
+                </span>
+                <h3 className="font-sans text-[clamp(2.5rem,5.5vw,7rem)] font-extrabold uppercase tracking-tighter leading-none transition-transform duration-500 ease-out-expo md:group-hover:translate-x-6 origin-left">
+                  {project.title}
+                </h3>
               </div>
-              <div className="p-5">
-                <div className="text-[15px] font-bold text-white mb-1.5">{project.title}</div>
-                <div className="text-xs text-white/50 leading-[1.6] line-clamp-2">{project.desc}</div>
-                <div className="flex flex-wrap gap-2 mt-3">
-                  {project.scope.split(' | ').map((tag) => (
-                    <span key={tag} className="text-[10px] tracking-[0.08em] text-primary font-semibold bg-primary/10 px-2 py-1">{tag}</span>
-                  ))}
+
+              {/* Right Side: Meta Data & Mobile Image */}
+              <div className="flex flex-col md:items-end w-full md:w-auto relative">
+                {/* Mobile Fallback Image */}
+                <div className="md:hidden w-full h-[200px] mt-4 mb-6 overflow-hidden">
+                  <img 
+                    src={project.images[0]} 
+                    alt={project.title} 
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="flex flex-col md:items-end gap-1">
+                  <span className="text-white/60 text-sm md:text-base font-medium transition-colors group-hover:text-white">
+                    {project.industry}
+                  </span>
+                  <div className="flex gap-2 items-center text-left md:text-right text-[10px] tracking-[0.2em] font-bold uppercase text-primary">
+                    {project.size}
+                  </div>
                 </div>
               </div>
             </motion.div>
           ))}
         </AnimatePresence>
-      </motion.div>
+      </div>
 
       <ProjectModal 
         project={selectedProject} 
