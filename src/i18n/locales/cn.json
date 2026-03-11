@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "home": "首页",
+    "about": "关于",
+    "services": "服务",
+    "projects": "精选作品",
+    "clients": "评价",
+    "news": "作品集",
+    "contact": "开始构建"
+  },
+  "hero": {
+    "headline_line1": "由好奇心",
+    "headline_line2": "驱动。",
+    "headline_line3": "由数据验证。",
+    "sub": "我们不仅构建品牌；我们构建新的未来。通过融合数据驱动的战略与世界级设计，我们推出下一代消费创业公司。"
+  },
+  "about": {
+    "label": "你在构建什么？",
+    "stat_ventures_label": "已启动的风险投资",
+    "stat_models_label": "已部署的AI模型",
+    "stat_builders_label": "生态系统中的建设者"
+  },
+  "services": {
+    "label": "我们的能力",
+    "heading": "为现代建设者打造的工作室",
+    "body": "我们将设计、人工智能和商业战略融合到一个工作室中——旨在推出、扩展和保护下一代品牌和产品。"
+  },
+  "footer": {
+    "tagline": "未来是被构建的，而不是等待的。",
+    "email_placeholder": "您的电子邮件地址",
+    "hours": "我们一直在构建。随时联系。"
+  }
+}

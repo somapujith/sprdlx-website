@@ -1,0 +1,103 @@
+@import "tailwindcss";
+@import "./animations.css";
+
+@theme {
+  --color-primary: #E85D26;
+  --color-dark: #1A1A1A;
+  --color-surface: #111111;
+  --color-text-main: #444444;
+  --color-text-muted: #888888;
+  --color-white: #FFFFFF;
+  --color-bg: #F8F8F8;
+
+  --font-sans: "Inter", "Neue Haas Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Anton", "Neue Haas Grotesk", ui-sans-serif, system-ui, sans-serif;
+
+  /* Custom easing */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-custom: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Custom durations */
+  --duration-350: 350ms;
+  --duration-400: 400ms;
+  --duration-600: 600ms;
+
+  /* Custom opacity */
+  --opacity-12: 0.12;
+}
+
+:root {
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 200ms;
+  --dur-normal: 400ms;
+  --dur-slow: 700ms;
+  --dur-xslow: 1200ms;
+}
+
+body {
+  background-color: var(--color-white);
+  color: var(--color-text-main);
+  overflow-x: hidden;
+  font-family: var(--font-sans);
+  cursor: none;
+}
+
+/* Hide scrollbar for lenis smooth scrolling */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* Custom Cursor */
+#cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, background 0.2s;
+  mix-blend-mode: normal;
+}
+
+#cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(232, 93, 38, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: transform 0.12s var(--ease-out-expo), width 0.3s, height 0.3s, opacity 0.3s;
+}
+
+body:hover #cursor {
+  opacity: 1;
+}
+
+/* 3D transform utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.group-hover\:rotate-y-180:is(:where(.group):hover *) {
+  transform: rotateY(180deg);
+}

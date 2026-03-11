@@ -1,0 +1,33 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "services": "Dịch vụ",
+    "projects": "Dự án nổi bật",
+    "clients": "Đánh giá",
+    "news": "Danh mục",
+    "contact": "Bắt đầu xây dựng"
+  },
+  "hero": {
+    "headline_line1": "Được thúc đẩy",
+    "headline_line2": "bởi Sự tò mò.",
+    "headline_line3": "Được chứng minh bằng Dữ liệu.",
+    "sub": "Chúng tôi không chỉ xây dựng thương hiệu; chúng tôi xây dựng tương lai mới. Bằng cách kết hợp chiến lược dựa trên dữ liệu với thiết kế đẳng cấp thế giới, chúng tôi ra mắt thế hệ tiếp theo của các startup tiêu dùng."
+  },
+  "about": {
+    "label": "bạn đang xây dựng gì?",
+    "stat_ventures_label": "Dự án đã khởi chạy",
+    "stat_models_label": "Mô hình AI đã triển khai",
+    "stat_builders_label": "Nhà xây dựng trong hệ sinh thái"
+  },
+  "services": {
+    "label": "năng lực của chúng tôi",
+    "heading": "Studio được xây dựng cho nhà xây dựng hiện đại",
+    "body": "Chúng tôi kết hợp thiết kế, AI và chiến lược kinh doanh thành một studio duy nhất — được xây dựng để ra mắt, mở rộng và bảo vệ tương lai cho thế hệ thương hiệu và sản phẩm tiếp theo."
+  },
+  "footer": {
+    "tagline": "Tương lai được xây dựng, không phải chờ đợi.",
+    "email_placeholder": "Địa chỉ email của bạn",
+    "hours": "Chúng tôi luôn xây dựng. Liên hệ bất cứ lúc nào."
+  }
+}
