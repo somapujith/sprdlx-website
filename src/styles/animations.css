@@ -12,10 +12,12 @@
 
 .animate-marquee-left {
   animation: marqueeLeft 24s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee-right {
   animation: marqueeRight 20s linear infinite;
+  will-change: transform;
 }
 
 .pause-on-hover:hover {
@@ -29,6 +31,7 @@
 
 .animate-pulse-dot {
   animation: pulse-dot 1.8s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 @keyframes scrollLine {
@@ -38,6 +41,7 @@
 
 .animate-scroll-line {
   animation: scrollLine 2s var(--ease-out-expo) infinite;
+  will-change: top;
 }
 
 @keyframes spin-slow {
@@ -46,4 +50,5 @@
 
 .animate-spin-slow {
   animation: spin-slow 4s linear infinite;
+  will-change: transform;
 }

@@ -40,7 +40,7 @@ export const HeroSection: React.FC = () => {
     <section ref={containerRef} id="hero" className="relative h-screen min-h-[600px] flex items-end overflow-hidden">
       <motion.div 
         style={{ y: bgY }}
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-0 will-change-transform"
       >
         <motion.div
           initial={{ scale: 1.1, opacity: 0 }}
@@ -118,6 +118,7 @@ export const HeroSection: React.FC = () => {
                       key={imgIdx}
                       src={img} 
                       alt="" 
+                      loading="lazy"
                       className={`absolute inset-0 object-cover w-full h-full opacity-0 transition-opacity duration-500 ease-out-expo ${hoverOpacity}`}
                       style={{ transitionDelay: `${imgIdx * 0.07}s` }}
                     />

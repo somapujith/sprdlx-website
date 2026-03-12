@@ -35,7 +35,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/80"
           />
           
           <motion.div 
@@ -62,6 +62,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, isOpen, onC
                   transition={{ duration: 0.5 }}
                   src={project.images[activeImage]}
                   alt=""
+                  loading="lazy"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </AnimatePresence>

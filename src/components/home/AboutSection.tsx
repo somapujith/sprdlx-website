@@ -26,9 +26,10 @@ export const AboutSection: React.FC = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="absolute w-[62%] h-[75%] top-0 left-0 z-10 object-cover rounded-sm"
+          className="absolute w-[62%] h-[75%] top-0 left-0 z-10 object-cover rounded-sm will-change-transform"
           src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80" 
           alt="Creative process" 
+          loading="lazy"
         />
         <motion.img 
           style={{ y: y2 }}
@@ -36,9 +37,10 @@ export const AboutSection: React.FC = () => {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="absolute w-[52%] h-[62%] bottom-0 right-0 z-20 border-4 border-black object-cover rounded-sm"
+          className="absolute w-[52%] h-[62%] bottom-0 right-0 z-20 border-4 border-black object-cover rounded-sm will-change-transform"
           src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80" 
           alt="Design details" 
+          loading="lazy"
         />
         <motion.img 
           style={{ y: y3, top: "50%" }}
@@ -46,9 +48,10 @@ export const AboutSection: React.FC = () => {
           whileInView={{ opacity: 1, y: "-50%" }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="absolute w-[38%] h-[45%] left-[55%] z-30 border-4 border-black object-cover rounded-sm"
+          className="absolute w-[38%] h-[45%] left-[55%] z-30 border-4 border-black object-cover rounded-sm will-change-transform"
           src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80" 
           alt="Technical innovation" 
+          loading="lazy"
         />
       </div>
 

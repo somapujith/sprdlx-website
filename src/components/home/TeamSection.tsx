@@ -20,7 +20,7 @@ const TEAM: TeamMember[] = [
   },
 ];
 
-const TeamCard: React.FC<{ member: TeamMember; index: number }> = ({ member, index }) => {
+const TeamCard: React.FC<{ member: TeamMember; index: number }> = React.memo(({ member, index }) => {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -43,11 +43,9 @@ const TeamCard: React.FC<{ member: TeamMember; index: number }> = ({ member, ind
           alt={member.name}
           draggable={false}
           loading="lazy"
-          className="absolute inset-0 w-full h-full object-cover select-none transition-all duration-700 ease-out"
-          style={{
-            filter: hovered ? 'grayscale(0%)' : 'grayscale(100%)',
-            transform: hovered ? 'scale(1.06)' : 'scale(1.0)',
-          }}
+          className={`absolute inset-0 w-full h-full object-cover select-none transition-all duration-700 ease-out ${
+            hovered ? 'grayscale-0 scale-[1.06]' : 'grayscale scale-100'
+          }`}
         />
 
         {/* Red tint overlay — fades in on hover */}
@@ -80,7 +78,7 @@ const TeamCard: React.FC<{ member: TeamMember; index: number }> = ({ member, ind
       </div>
     </motion.div>
   );
-};
+});
 
 export const TeamSection: React.FC = () => {
   return (

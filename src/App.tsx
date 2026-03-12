@@ -33,22 +33,24 @@ export default function App() {
       }
     };
 
+    let rafId: number;
     const animRing = () => {
       rx += (mx - rx) * 0.15;
       ry += (my - ry) * 0.15;
       if (ringRef.current) {
         ringRef.current.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
       }
-      requestAnimationFrame(animRing);
+      rafId = requestAnimationFrame(animRing);
     };
 
-    document.addEventListener('mousemove', onMouseMove);
-    requestAnimationFrame(animRing);
+    document.addEventListener('mousemove', onMouseMove, { passive: true });
+    rafId = requestAnimationFrame(animRing);
 
     // Cleanup
     return () => {
       lenis.destroy();
       document.removeEventListener('mousemove', onMouseMove);
+      cancelAnimationFrame(rafId);
     };
   }, []);
 

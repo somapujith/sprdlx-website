@@ -18,11 +18,11 @@ export const NavOverlay: React.FC = () => {
     <AnimatePresence>
       {navOpen && (
         <motion.div
-          initial={{ clipPath: 'circle(0% at calc(100% - 72px) 36px)' }}
-          animate={{ clipPath: 'circle(150% at calc(100% - 72px) 36px)' }}
-          exit={{ clipPath: 'circle(0% at calc(100% - 72px) 36px)' }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="fixed inset-0 z-40 bg-black flex flex-col"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="fixed inset-0 z-40 bg-black flex flex-col will-change-transform"
         >
           <div className="flex-1 flex overflow-hidden pt-[72px]">
             <div className="flex-1 grid grid-cols-2 lg:grid-cols-3 grid-rows-3 lg:grid-rows-2 p-6 lg:p-12 gap-0">
@@ -37,10 +37,10 @@ export const NavOverlay: React.FC = () => {
                   className="relative overflow-hidden border border-white/5 flex flex-col justify-end p-6 group transition-colors duration-300 hover:border-primary/30"
                 >
                   <div className="absolute inset-0 overflow-hidden">
-                    <img src={item.img} alt="" className="w-full h-full object-cover opacity-25 transition-all duration-500 ease-out-expo group-hover:opacity-45 group-hover:scale-105" />
+                    <img src={item.img} alt="" loading="lazy" className="w-full h-full object-cover opacity-25 transition-all duration-500 ease-out-expo group-hover:opacity-45 group-hover:scale-105" />
                   </div>
                   <div className="absolute inset-0 overflow-hidden">
-                    <img src={item.hoverImg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-400 group-hover:opacity-50" />
+                    <img src={item.hoverImg} alt="" loading="lazy" className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-400 group-hover:opacity-50" />
                   </div>
                   <div className="relative z-10 text-[10px] text-primary tracking-[0.15em] font-semibold mb-1.5 opacity-80">
                     {item.tag}

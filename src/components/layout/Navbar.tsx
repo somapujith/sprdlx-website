@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useUIStore } from '../../store/uiStore';
@@ -23,12 +23,26 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true, visible = tr
   const [scrolled, setScrolled] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
 
+  const rafRef = useRef<number | null>(null);
+  const scrolledRef = useRef(false);
+
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        const isScrolled = window.scrollY > 80;
+        if (isScrolled !== scrolledRef.current) {
+          scrolledRef.current = isScrolled;
+          setScrolled(isScrolled);
+        }
+        rafRef.current = null;
+      });
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   const navLinks = [
@@ -50,14 +64,10 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true, visible = tr
       animate={{
         y: visible ? '0%' : '-100%',
         backgroundColor: scrolled ? 'rgba(0, 0, 0, 0.96)' : (transparent ? 'rgba(0, 0, 0, 0)' : 'rgba(0, 0, 0, 1)'),
-        backdropFilter: scrolled ? 'blur(12px)' : 'blur(0px)',
-        boxShadow: scrolled ? '0 4px 30px rgba(0, 0, 0, 0.1)' : 'none',
       }}
       transition={{
         y: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
         backgroundColor: { duration: 0.3, ease: 'easeOut' },
-        backdropFilter: { duration: 0.3, ease: 'easeOut' },
-        boxShadow: { duration: 0.3, ease: 'easeOut' },
       }}
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 h-[72px]"
     >

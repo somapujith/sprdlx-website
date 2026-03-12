@@ -1,12 +1,74 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useCallback, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
+const ServiceRow: React.FC<{
+  service: { num: string; title: string; subtitle: string; img: string; bullets: string[] };
+  isActive: boolean;
+  isDimmed: boolean;
+  onHover: () => void;
+}> = React.memo(({ service, isActive, isDimmed, onHover }) => (
+  <div
+    onMouseEnter={onHover}
+    className="group border-b border-white/10 relative cursor-none"
+  >
+    {/* Header Row */}
+    <div className={`flex items-center justify-between py-8 md:py-10 transition-opacity duration-500 ${isActive ? 'opacity-100' : isDimmed ? 'opacity-40 hover:opacity-75' : 'opacity-100'}`}>
+      <div className="flex items-center gap-6 md:gap-12">
+        <span className="font-mono text-xs md:text-sm tracking-widest text-primary font-semibold">{service.num}</span>
+        <h3 className={`font-sans text-[clamp(1.5rem,3.2vw,3.5rem)] md:text-[clamp(2rem,4vw,4.5rem)] font-bold tracking-[-0.02em] uppercase transition-transform duration-500 ease-out-expo origin-left ${isActive ? 'translate-x-2' : ''}`}>
+          {service.title}
+        </h3>
+      </div>
+      <span className="hidden md:block text-[10px] md:text-[11px] font-sans tracking-[0.2em] uppercase font-bold text-white/50">
+        {service.subtitle}
+      </span>
+    </div>
+
+    {/* Expandable content — fixed max-height instead of height:'auto' */}
+    <div
+      className="overflow-hidden transition-[max-height,opacity] duration-500 ease-out"
+      style={{
+        maxHeight: isActive ? '500px' : '0px',
+        opacity: isActive ? 1 : 0,
+      }}
+    >
+      <div className="pb-12 pt-2 flex flex-col md:flex-row gap-8 lg:gap-16 items-start md:pl-[120px]">
+        <div className="w-full md:w-[45%] xl:w-[35%] overflow-hidden relative">
+          <div className="aspect-[4/3] bg-[#111] overflow-hidden">
+            <img
+              src={service.img}
+              alt={service.title}
+              loading="lazy"
+              className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out-expo scale-110 group-hover:scale-100"
+            />
+          </div>
+        </div>
+        <div className="w-full md:w-[50%] lg:w-[40%] pt-2 md:pt-4">
+          <div className="md:hidden text-[10px] tracking-[0.2em] uppercase font-bold text-primary mb-4">
+            {service.subtitle}
+          </div>
+          <div className="flex flex-col gap-3 md:gap-4">
+            {service.bullets.map((bullet, idx) => (
+              <div key={idx} className="flex items-start gap-4">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-2" />
+                <span className="text-[14px] md:text-[15px] font-medium text-white/70 leading-[1.6]">
+                  {bullet}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+));
+
 export const ServicesSection: React.FC = () => {
   const { t } = useTranslation();
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number>(0);
 
-  const services = [
+  const services = useMemo(() => [
     {
       num: '01',
       title: 'BRAND & PRODUCT CONCEPTION',
@@ -35,7 +97,7 @@ export const ServicesSection: React.FC = () => {
       img: 'https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80',
       bullets: ["Access to 'The Lab'", 'Collaborative R&D Sprints', 'AI & Design Masterclasses', 'Community-Sourced Talent']
     }
-  ];
+  ], []);
 
   return (
     <section id="services" className="bg-black text-white min-h-screen py-[120px] px-6 md:px-12 flex flex-col justify-center">
@@ -61,60 +123,13 @@ export const ServicesSection: React.FC = () => {
 
       <div className="w-full border-t border-white/10">
         {services.map((service, i) => (
-          <div 
+          <ServiceRow
             key={i}
-            onMouseEnter={() => setHoveredIndex(i)}
-            className="group border-b border-white/10 relative cursor-none"
-          >
-            {/* Header Row */}
-            <div className={`flex items-center justify-between py-8 md:py-10 transition-colors duration-500 ${hoveredIndex === i ? 'opacity-100' : 'opacity-40 hover:opacity-75'}`}>
-              <div className="flex items-center gap-6 md:gap-12">
-                <span className="font-mono text-xs md:text-sm tracking-widest text-primary font-semibold">{service.num}</span>
-                <h3 className={`font-sans text-[clamp(1.5rem,3.2vw,3.5rem)] md:text-[clamp(2rem,4vw,4.5rem)] font-bold tracking-[-0.02em] uppercase transition-transform duration-500 ease-out-expo origin-left ${hoveredIndex === i ? 'translate-x-2' : ''}`}>
-                  {service.title}
-                </h3>
-              </div>
-              <span className="hidden md:block text-[10px] md:text-[11px] font-sans tracking-[0.2em] uppercase font-bold text-white/50">
-                {service.subtitle}
-              </span>
-            </div>
-
-            {/* Expandable Image & Info */}
-            <motion.div 
-              initial={false}
-              animate={{ height: hoveredIndex === i ? 'auto' : '0px', opacity: hoveredIndex === i ? 1 : 0 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="overflow-hidden"
-            >
-              <div className="pb-12 pt-2 flex flex-col md:flex-row gap-8 lg:gap-16 items-start md:pl-[120px]">
-                <div className="w-full md:w-[45%] xl:w-[35%] overflow-hidden relative">
-                  <div className="aspect-[4/3] bg-[#111] overflow-hidden">
-                    <img 
-                      src={service.img} 
-                      alt={service.title}
-                      loading="lazy"
-                      className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out-expo scale-110 group-hover:scale-100"
-                    />
-                  </div>
-                </div>
-                <div className="w-full md:w-[50%] lg:w-[40%] pt-2 md:pt-4">
-                  <div className="md:hidden text-[10px] tracking-[0.2em] uppercase font-bold text-primary mb-4">
-                    {service.subtitle}
-                  </div>
-                  <div className="flex flex-col gap-3 md:gap-4">
-                    {service.bullets.map((bullet, idx) => (
-                      <div key={idx} className="flex items-start gap-4">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-2" />
-                        <span className="text-[14px] md:text-[15px] font-medium text-white/70 leading-[1.6]">
-                          {bullet}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </div>
+            service={service}
+            isActive={hoveredIndex === i}
+            isDimmed={hoveredIndex !== i}
+            onHover={useCallback(() => setHoveredIndex(i), [i])}
+          />
         ))}
       </div>
     </section>
