@@ -7,9 +7,11 @@ const ServiceRow: React.FC<{
   isActive: boolean;
   isDimmed: boolean;
   onHover: () => void;
-}> = React.memo(({ service, isActive, isDimmed, onHover }) => (
+  onToggle: () => void;
+}> = React.memo(({ service, isActive, isDimmed, onHover, onToggle }) => (
   <div
     onMouseEnter={onHover}
+    onClick={onToggle}
     className="group border-b border-white/10 relative cursor-none"
   >
     {/* Header Row */}
@@ -100,7 +102,7 @@ export const ServicesSection: React.FC = () => {
   ], []);
 
   return (
-    <section id="services" className="bg-black text-white min-h-screen py-[120px] px-6 md:px-12 flex flex-col justify-center">
+    <section id="services" className="bg-black text-white min-h-screen py-20 sm:py-[120px] px-4 sm:px-6 md:px-12 flex flex-col justify-center">
       <div className="flex flex-col mb-16">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -128,7 +130,8 @@ export const ServicesSection: React.FC = () => {
             service={service}
             isActive={hoveredIndex === i}
             isDimmed={hoveredIndex !== i}
-            onHover={useCallback(() => setHoveredIndex(i), [i])}
+            onHover={() => setHoveredIndex(i)}
+            onToggle={() => setHoveredIndex(hoveredIndex === i ? -1 : i)}
           />
         ))}
       </div>

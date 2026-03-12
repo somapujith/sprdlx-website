@@ -30,14 +30,12 @@ const TeamCard: React.FC<{ member: TeamMember; index: number }> = React.memo(({ 
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.9, delay: index * 0.14, ease: [0.16, 1, 0.3, 1] }}
     >
-      {/* Card image area */}
       <div
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="relative overflow-hidden cursor-none"
+        className="relative overflow-hidden cursor-none group"
         style={{ aspectRatio: '3 / 4' }}
       >
-        {/* Image — grayscale default, color on hover */}
         <img
           src={member.img}
           alt={member.name}
@@ -48,32 +46,32 @@ const TeamCard: React.FC<{ member: TeamMember; index: number }> = React.memo(({ 
           }`}
         />
 
-        {/* Red tint overlay — fades in on hover */}
+        {/* Hover tint */}
         <div
           className="absolute inset-0 transition-opacity duration-700"
           style={{
-            background: 'linear-gradient(135deg, rgba(180,20,10,0.55) 0%, rgba(120,10,5,0.35) 100%)',
+            background: 'linear-gradient(135deg, rgba(232,93,38,0.4) 0%, rgba(180,20,10,0.2) 100%)',
             mixBlendMode: 'multiply',
             opacity: hovered ? 1 : 0,
           }}
         />
 
-        {/* Bottom vignette for text readability */}
+        {/* Bottom vignette */}
         <div
           className="absolute inset-0"
           style={{
-            background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0) 100%)',
+            background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%)',
           }}
         />
-      </div>
 
-      {/* Name + role */}
-      <div className="mt-5 px-0.5">
-        <div className="text-[18px] font-bold text-white tracking-[-0.02em] leading-tight">
-          {member.name}
-        </div>
-        <div className="text-[12px] font-semibold mt-1 tracking-[0.06em] uppercase text-primary">
-          {member.role}
+        {/* Name overlay on hover */}
+        <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
+          <div className={`text-[15px] md:text-[17px] font-bold text-white tracking-[-0.01em] transition-all duration-500 ${hovered ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-60'}`}>
+            {member.name}
+          </div>
+          <div className={`text-[10px] md:text-[11px] tracking-[0.1em] uppercase text-primary font-semibold mt-1 transition-all duration-500 delay-75 ${hovered ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'}`}>
+            {member.role}
+          </div>
         </div>
       </div>
     </motion.div>
@@ -82,41 +80,63 @@ const TeamCard: React.FC<{ member: TeamMember; index: number }> = React.memo(({ 
 
 export const TeamSection: React.FC = () => {
   return (
-    <section id="team" className="bg-black min-h-screen flex flex-col justify-center py-[80px] px-6 md:px-12">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
-        <div>
+    <section id="team" className="bg-black py-20 sm:py-[120px] md:py-[160px] px-4 sm:px-6 md:px-12 lg:px-16">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 mb-16 md:mb-20">
+        {/* Left: label + heading */}
+        <div className="lg:col-span-6">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="flex items-center gap-2.5 mb-4 text-[10px] tracking-[0.2em] text-primary font-bold lowercase"
+            transition={{ duration: 0.7 }}
+            className="flex items-center gap-2.5 mb-8"
           >
             <div className="w-2 h-2 rounded-full bg-primary animate-spin-slow" />
-            our team
+            <span className="text-[10px] tracking-[0.25em] text-primary font-bold uppercase">
+              Our Team
+            </span>
           </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
+          <h2 className="text-[clamp(36px,5vw,80px)] font-sans font-extrabold tracking-tighter leading-[0.92]">
+            <div className="overflow-hidden">
+              <motion.span
+                initial={{ y: '100%' }}
+                whileInView={{ y: '0%' }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="block"
+              >
+                The Builders
+              </motion.span>
+            </div>
+            <div className="overflow-hidden">
+              <motion.span
+                initial={{ y: '100%' }}
+                whileInView={{ y: '0%' }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="block font-serif italic font-medium text-white/40 tracking-normal"
+              >
+                Behind SPRDLX
+              </motion.span>
+            </div>
+          </h2>
+        </div>
+
+        {/* Right: description */}
+        <div className="lg:col-span-4 lg:col-start-9 lg:flex lg:flex-col lg:justify-end">
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-[clamp(32px,3.5vw,52px)] font-extrabold tracking-[-0.03em] text-white leading-[1.1]"
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="text-[13px] md:text-[14px] text-white/35 leading-[1.8] max-w-[380px]"
           >
-            The Builders<br />Behind SPRDLX
-          </motion.h2>
+            A collective of designers, engineers, and strategists obsessed with building things that matter.
+          </motion.p>
         </div>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-[13px] text-white/40 leading-[1.8] max-w-[320px]"
-        >
-          A collective of designers, engineers, and strategists obsessed with building things that matter.
-        </motion.p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
         {TEAM.map((member, i) => (
           <TeamCard key={member.name} member={member} index={i} />
         ))}

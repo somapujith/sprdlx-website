@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Lenis from 'lenis';
 import { LoadingScreen } from './components/LoadingScreen';
 import { Home } from './pages/Home';
+import { NotFound } from './pages/NotFound';
 
 export default function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -63,6 +64,7 @@ export default function App() {
       <div className={isLoading ? 'h-screen overflow-hidden' : ''}>
         <Routes>
           <Route path="/" element={<Home isLoading={isLoading} />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </Router>

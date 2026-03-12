@@ -52,10 +52,11 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true, visible = tr
     { label: t('nav.projects'), href: '#projects' },
   ];
 
-  const handleLangChange = (code: string) => {
-    setLanguage(code as any);
+  const handleLangChange = (code: typeof languages[number]['code']) => {
+    setLanguage(code);
     i18n.changeLanguage(code);
     setLangOpen(false);
+    document.documentElement.lang = code === 'cn' ? 'zh' : code === 'vn' ? 'vi' : code;
   };
 
   return (
@@ -72,7 +73,7 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true, visible = tr
       className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 md:px-12 h-[72px]"
     >
       <div className="flex items-center">
-        <a href="#" className="text-2xl font-display text-primary tracking-tighter">
+        <a href="#hero" aria-label="SPRDLX — back to top" className="text-2xl font-display text-primary tracking-tighter">
           SPRDLX
         </a>
       </div>
@@ -98,6 +99,8 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true, visible = tr
         <div className="relative hidden md:block">
           <button 
             onClick={() => setLangOpen(!langOpen)}
+            aria-label="Select language"
+            aria-expanded={langOpen}
             className="flex items-center gap-1 text-xs font-semibold text-white/50 hover:text-white tracking-[0.1em] uppercase transition-colors"
           >
             {language} <ChevronDown size={14} />
@@ -130,6 +133,8 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true, visible = tr
         <button 
           className="lg:hidden flex flex-col gap-[5px] p-2 z-50 relative"
           onClick={() => setNavOpen(!navOpen)}
+          aria-label={navOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={navOpen}
         >
           <motion.span 
             animate={{ rotate: navOpen ? 45 : 0, y: navOpen ? 6.5 : 0 }}

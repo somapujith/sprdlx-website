@@ -4,15 +4,13 @@
     "about": "About",
     "services": "Services",
     "projects": "Featured Work",
-    "clients": "Reviews",
-    "news": "Portfolio",
     "contact": "Start Building"
   },
   "hero": {
     "headline_line1": "Driven by",
     "headline_line2": "Curiosity.",
     "headline_line3": "Proven by Data.",
-    "sub": "We don't just build brands; we build new futures. By fusing data-driven strategy with world-class design, we launch the next generation of consumer startups."
+    "sub": "Born to create, built to scale. By fusing data-driven strategy with world-class design, we launch the next generation of consumer startups."
   },
   "about": {
 

@@ -35,7 +35,7 @@ export const WhyADM: React.FC = () => {
     <section
       id="why"
       ref={sectionRef}
-      className="bg-black text-white relative py-[140px] md:py-[180px] px-6 md:px-12 overflow-hidden"
+      className="bg-black text-white relative py-20 sm:py-[140px] md:py-[180px] px-4 sm:px-6 md:px-12 overflow-hidden"
     >
       {/* Large faded background word */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">

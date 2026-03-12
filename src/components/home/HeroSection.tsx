@@ -1,151 +1,198 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
-import { ArrowRight } from 'lucide-react';
 
 export const HeroSection: React.FC = () => {
-  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
+  const [time, setTime] = useState('');
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start start", "end start"]
+    offset: ['start start', 'end start'],
   });
 
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const ctaY = useTransform(scrollYProgress, [0, 1], ["0%", "-10%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '30%']);
+  const fade = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const watermarkY = useTransform(scrollYProgress, [0, 1], ['0%', '-15%']);
 
-  const ctaItems = [
-    { 
-      label: t('nav.projects'), 
-      href: '#projects', 
-      images: [
-        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1542744094-24638eff58bb?auto=format&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&q=80'
-      ]
-    },
-    { 
-      label: t('nav.services'), 
-      href: '#services', 
-      images: [
-        'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&q=80',
-        'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80'
-      ]
-    },
-  ];
+  useEffect(() => {
+    const update = () => {
+      const now = new Date();
+      setTime(
+        now.toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          timeZone: 'Asia/Bangkok',
+          hour12: false,
+        })
+      );
+    };
+    update();
+    const interval = setInterval(update, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const ease = [0.16, 1, 0.3, 1] as const;
 
   return (
-    <section ref={containerRef} id="hero" className="relative h-screen min-h-[600px] flex items-end overflow-hidden">
-      <motion.div 
-        style={{ y: bgY }}
-        className="absolute inset-0 z-0 will-change-transform"
+    <section
+      ref={containerRef}
+      id="hero"
+      className="relative h-screen min-h-[700px] flex flex-col justify-between overflow-hidden bg-black"
+    >
+      {/* Background SPRDLX watermark */}
+      <motion.div
+        style={{ y: watermarkY }}
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none will-change-transform"
       >
-        <motion.div
-          initial={{ scale: 1.1, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          className="w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80)' }}
-        />
+        <motion.span
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, delay: 0.6, ease: 'easeOut' }}
+          className="text-[clamp(150px,28vw,420px)] font-['Franie'] font-bold tracking-tight leading-none text-white/[0.03]"
+        >
+          SPRDLX
+        </motion.span>
       </motion.div>
-      <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/75 via-black/20 to-black/10" />
-      
-      <div className="relative z-20 w-full px-6 md:px-12 pb-0">
-        <motion.div style={{ y: textY }}>
-          <h1 className="mb-0 overflow-hidden text-[clamp(42px,5.5vw,88px)] font-extrabold text-white leading-[1.05] tracking-[-0.03em]">
-            <div className="overflow-hidden">
-              <motion.span 
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.1, ease: "easeOut" }}
-                className="block"
-              >
-                {t('hero.headline_line1')}
-              </motion.span>
-            </div>
-            <div className="overflow-hidden">
-              <motion.span 
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.25, ease: "easeOut" }}
-                className="block"
-              >
-                {t('hero.headline_line2')}
-              </motion.span>
-            </div>
-            <div className="overflow-hidden">
-              <motion.span 
-                initial={{ opacity: 0, y: 60 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 1.4, ease: "easeOut" }}
-                className="block"
-              >
-                {t('hero.headline_line3')}
-              </motion.span>
-            </div>
-          </h1>
-          
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.7, ease: "easeOut" }}
-            className="text-sm text-white/60 max-w-[480px] leading-[1.7] my-5 md:mb-10"
-          >
-            {t('hero.sub')}
-          </motion.p>
-        </motion.div>
 
-        <motion.div style={{ y: ctaY }}>
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.9, ease: "easeOut" }}
-            className="flex flex-col sm:flex-row gap-[2px] border-t border-white/10 pt-[2px]"
-          >
-            {ctaItems.map((item, i) => (
-              <a 
-                key={item.label} 
-                href={item.href}
-                className="flex-1 relative overflow-hidden bg-black/35 backdrop-blur-md border border-white/10 p-5 pb-4.5 flex flex-col justify-between min-h-[130px] group transition-colors duration-300 hover:border-primary/40 hover:bg-primary/10"
-              >
-                <div className="absolute inset-0 pointer-events-none">
-                  {item.images.map((img, imgIdx) => {
-                    const hoverOpacity = imgIdx === 0 ? 'group-hover:opacity-30' : imgIdx === 1 ? 'group-hover:opacity-25' : 'group-hover:opacity-20';
-                    return (
-                    <img 
-                      key={imgIdx}
-                      src={img} 
-                      alt="" 
-                      loading="lazy"
-                      className={`absolute inset-0 object-cover w-full h-full opacity-0 transition-opacity duration-500 ease-out-expo ${hoverOpacity}`}
-                      style={{ transitionDelay: `${imgIdx * 0.07}s` }}
-                    />
-                    );
-                  })}
-                </div>
-                <div className="relative z-10 text-[17px] font-bold text-white tracking-[-0.01em] group-hover:font-extrabold transition-all">
-                  {item.label}
-                </div>
-                <div className="relative z-10 w-7 h-7 border border-white/25 rounded-full flex items-center justify-center transition-colors duration-300 group-hover:bg-primary group-hover:border-primary">
-                  <ArrowRight size={12} className="text-white" />
-                </div>
-              </a>
-            ))}
-          </motion.div>
-        </motion.div>
+      {/* Subtle radial glow */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/[0.04] rounded-full blur-[150px]" />
       </div>
 
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 2.2, ease: "easeOut" }}
-        className="absolute bottom-8 right-12 z-10 hidden md:flex flex-col items-center gap-2"
+      {/* Main content — centered */}
+      <motion.div
+        style={{ y: textY, opacity: fade }}
+        className="relative z-10 flex-1 flex flex-col justify-center items-center text-center px-6 md:px-12"
       >
-        <div className="w-1.5 h-1.5 bg-primary rounded-full animate-pulse-dot" />
-        <div className="w-[1px] h-10 bg-white/20 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1/2 bg-primary animate-scroll-line" />
+        {/* Eyebrow */}
+        <div className="overflow-hidden mb-8 md:mb-10">
+          <motion.div
+            initial={{ y: '100%' }}
+            animate={{ y: '0%' }}
+            transition={{ duration: 0.8, delay: 1.0, ease }}
+            className="flex items-center gap-3"
+          >
+            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+            <span className="text-[10px] md:text-[11px] tracking-[0.3em] text-white/30 font-semibold uppercase">
+              AI Design Studio & Venture Builder
+            </span>
+            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+          </motion.div>
+        </div>
+
+        {/* Brand name — hero centerpiece */}
+        <div className="overflow-hidden mb-4">
+          <motion.div
+            initial={{ y: '110%' }}
+            animate={{ y: '0%' }}
+            transition={{ duration: 1.2, delay: 1.1, ease }}
+          >
+            <span
+              className="block text-[clamp(80px,18vw,280px)] font-['Franie'] font-bold tracking-tight leading-[0.85] text-white"
+            >
+              SPRDLX
+            </span>
+          </motion.div>
+        </div>
+
+        {/* Tagline */}
+        <div className="overflow-hidden mb-6">
+          <motion.div
+            initial={{ y: '100%' }}
+            animate={{ y: '0%' }}
+            transition={{ duration: 0.9, delay: 1.4, ease }}
+            className="flex items-center gap-3 md:gap-5 flex-wrap justify-center"
+          >
+            <span className="text-[clamp(18px,3vw,36px)] font-sans font-black uppercase tracking-tight text-white/20">
+              Where Ideas
+            </span>
+            <span className="text-[clamp(18px,3vw,36px)] font-serif italic font-medium text-primary tracking-normal">
+              Become
+            </span>
+            <span className="text-[clamp(18px,3vw,36px)] font-sans font-black uppercase tracking-tight text-white/20">
+              Iconic
+            </span>
+          </motion.div>
+        </div>
+
+        {/* Divider */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.2, delay: 1.7, ease }}
+          className="h-px bg-white/10 origin-center w-full max-w-[500px] mb-6 will-change-transform"
+        />
+
+        {/* Description */}
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 2.0, ease: 'easeOut' }}
+          className="text-[13px] md:text-[14px] text-white/30 max-w-[480px] leading-[1.85] font-medium mb-10"
+        >
+          By fusing data-driven strategy with world-class design, we launch the next generation of consumer startups and AI-native products.
+        </motion.p>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 2.2, ease: 'easeOut' }}
+        >
+          <a
+            href="#projects"
+            className="group inline-flex items-center gap-4 text-[11px] tracking-[0.15em] text-white/40 font-semibold uppercase transition-colors duration-300 hover:text-white"
+          >
+            <span className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:scale-110 transition-all duration-500">
+              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="transition-transform duration-300 group-hover:translate-x-[1px] group-hover:-translate-y-[1px]">
+                <path d="M1.5 8.5L8.5 1.5M8.5 1.5H3M8.5 1.5V7" stroke="currentColor" strokeWidth="1.2" />
+              </svg>
+            </span>
+            View Our Work
+          </a>
+        </motion.div>
+      </motion.div>
+
+      {/* Bottom bar */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 2.5, ease: 'easeOut' }}
+        className="relative z-10 border-t border-white/[0.06]"
+      >
+        <div className="flex items-center justify-between px-4 sm:px-6 md:px-12 lg:px-16 py-3 sm:py-4">
+          <div className="flex items-center gap-4 sm:gap-6 md:gap-10">
+            <div className="flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+              <span className="text-[8px] sm:text-[9px] tracking-[0.15em] text-white/25 font-semibold uppercase">
+                Available
+              </span>
+            </div>
+            <span className="hidden sm:block text-[9px] tracking-[0.15em] text-white/15 font-mono">
+              BKK {time}
+            </span>
+          </div>
+
+          <div className="hidden md:flex flex-col items-center gap-1.5 absolute left-1/2 -translate-x-1/2">
+            <span className="text-[8px] tracking-[0.25em] text-white/15 font-semibold uppercase">
+              Scroll
+            </span>
+            <div className="w-px h-7 bg-white/10 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-full h-1/2 bg-primary animate-scroll-line" />
+            </div>
+          </div>
+
+          <a
+            href="mailto:Hello@sprdlx.com"
+            className="group flex items-center gap-2 sm:gap-2.5 text-[8px] sm:text-[9px] tracking-[0.12em] text-white/30 font-semibold uppercase transition-colors duration-300 hover:text-white"
+          >
+            <span className="hidden sm:inline">Hello@sprdlx.com</span>
+            <span className="sm:hidden">Email</span>
+            <span className="w-5 h-5 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300">
+              <svg width="7" height="7" viewBox="0 0 8 8" fill="none" className="transition-transform duration-300 group-hover:translate-x-[1px] group-hover:-translate-y-[1px]">
+                <path d="M1 7L7 1M7 1H2M7 1V6" stroke="currentColor" strokeWidth="1.2" />
+              </svg>
+            </span>
+          </a>
         </div>
       </motion.div>
     </section>

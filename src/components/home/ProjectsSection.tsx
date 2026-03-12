@@ -14,7 +14,8 @@ const projects = [
     scope: 'AI | Branding | Content | Website',
     size: 'Full Scope',
     logo: '/logos/anthill.svg',
-    images: ['/projects/anthill.png']
+    images: ['/projects/anthill.png'],
+    url: 'https://anthillventures.com'
   },
   {
     id: '1',
@@ -26,7 +27,8 @@ const projects = [
     scope: 'Brand Strategy | Pitch Decks',
     size: 'Brand Strategy',
     logo: '/logos/anaar.svg',
-    images: ['/projects/anaar.jpg']
+    images: ['/projects/anaar.jpg'],
+    url: 'https://shopanaar.com'
   },
   {
     id: '2',
@@ -38,7 +40,8 @@ const projects = [
     scope: 'Branding | Digital Products | Strategy',
     size: 'Full Scope',
     logo: '/logos/sunday_everyday.svg',
-    images: ['/projects/sunday_everyday.jpg']
+    images: ['/projects/sunday_everyday.jpg'],
+    url: 'https://feelslikesundayeveryday.com'
   },
   {
     id: '3',
@@ -50,12 +53,13 @@ const projects = [
     scope: 'Branding | Digital Products | Strategy',
     size: 'GTM Strategy',
     logo: '/logos/smiley.svg',
-    images: ['/projects/pulp.jpg']
+    images: ['/projects/pulp.jpg'],
+    url: 'https://pulpindia.com'
   }
 ];
 
 export const ProjectsSection: React.FC = () => {
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<typeof projects[number] | null>(null);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -75,7 +79,7 @@ export const ProjectsSection: React.FC = () => {
       id="projects"
       ref={sectionRef}
       onMouseMove={handleMouseMove}
-      className="bg-black relative min-h-screen py-[120px] px-6 md:px-12 overflow-hidden"
+      className="bg-black relative min-h-screen py-20 sm:py-[120px] px-4 sm:px-6 md:px-12 overflow-hidden"
     >
       {/* Header */}
       <div className="flex flex-col mb-16 md:mb-24">
@@ -134,10 +138,20 @@ export const ProjectsSection: React.FC = () => {
             transition={{ duration: 0.5, delay: i * 0.08 }}
             onMouseEnter={() => setActiveIndex(i)}
             onMouseLeave={() => setActiveIndex(null)}
-            onClick={() => setSelectedProject(project)}
+            onClick={() => {
+              if (typeof window !== 'undefined' && 'ontouchstart' in window) {
+                if (activeIndex === i) {
+                  setSelectedProject(project);
+                } else {
+                  setActiveIndex(i);
+                }
+              } else {
+                setSelectedProject(project);
+              }
+            }}
             className="group border-b border-white/10 cursor-none"
           >
-            <div className="flex items-center justify-between py-10 md:py-14 relative">
+            <div className="flex items-center justify-between py-6 sm:py-10 md:py-14 relative">
               {/* Left: index + title */}
               <div className="flex items-baseline gap-4 md:gap-8 overflow-hidden">
                 <span className="text-[11px] md:text-xs font-mono tracking-widest text-primary/70 font-semibold tabular-nums">
@@ -201,7 +215,7 @@ export const ProjectsSection: React.FC = () => {
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
               className="overflow-hidden"
             >
-              <div className="pb-8 flex flex-wrap gap-2 md:pl-[60px]">
+              <div className="pb-8 flex flex-wrap items-center gap-2 md:pl-[60px]">
                 {project.scope.split(' | ').map((tag: string) => (
                   <span
                     key={tag}
@@ -210,6 +224,16 @@ export const ProjectsSection: React.FC = () => {
                     {tag}
                   </span>
                 ))}
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="inline-flex items-center gap-1.5 text-[10px] tracking-[0.12em] text-black uppercase font-semibold bg-primary rounded-full px-4 py-1.5 ml-2 transition-all duration-300 hover:bg-white hover:text-black cursor-pointer"
+                >
+                  Visit Site
+                  <ArrowUpRight size={11} strokeWidth={2.5} />
+                </a>
               </div>
             </motion.div>
           </motion.div>

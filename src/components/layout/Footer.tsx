@@ -15,15 +15,15 @@ export const Footer: React.FC = () => {
   ];
 
   const socials = [
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/sprdlx', label: 'LinkedIn' },
+    { icon: Twitter, href: 'https://x.com/sprdlx', label: 'Twitter' },
+    { icon: Instagram, href: 'https://www.instagram.com/sprdlx', label: 'Instagram' },
   ];
 
   return (
     <footer className="bg-black border-t border-white/5">
       {/* Big CTA block */}
-      <div className="px-8 md:px-16 pt-20 pb-16 border-b border-white/5">
+      <div className="px-4 sm:px-8 md:px-16 pt-16 sm:pt-20 pb-12 sm:pb-16 border-b border-white/5">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export const Footer: React.FC = () => {
               href="mailto:Hello@sprdlx.com"
               className="inline-flex items-center gap-3 group"
             >
-              <span className="text-[clamp(1rem,2vw,1.25rem)] text-white/50 hover:text-white transition-colors duration-300 border-b border-white/20 group-hover:border-primary pb-1 transition-all">
+              <span className="text-[clamp(1rem,2vw,1.25rem)] text-white/50 hover:text-white border-b border-white/20 group-hover:border-primary pb-1 transition-all duration-300">
                 Hello@sprdlx.com
               </span>
               <span className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300">
@@ -52,14 +52,14 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Info grid */}
-      <div className="px-8 md:px-16 py-12 grid grid-cols-2 md:grid-cols-4 gap-10 border-b border-white/5">
+      <div className="px-4 sm:px-8 md:px-16 py-10 sm:py-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 border-b border-white/5">
         {/* Brand */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="col-span-2 md:col-span-1"
+          className="col-span-1 sm:col-span-2 md:col-span-1"
         >
           <div className="text-xl font-display text-primary tracking-tighter mb-3">SPRDLX</div>
           <p className="text-[12px] text-white/35 leading-[1.8] max-w-[200px]">
@@ -119,6 +119,9 @@ export const Footer: React.FC = () => {
               <a
                 key={label}
                 href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Follow us on ${label}`}
                 className="inline-flex items-center gap-2.5 text-[13px] text-white/45 hover:text-white transition-colors group w-fit"
               >
                 <Icon size={13} className="text-white/30 group-hover:text-primary transition-colors" />
@@ -130,11 +133,11 @@ export const Footer: React.FC = () => {
       </div>
 
       {/* Bottom bar */}
-      <div className="px-8 md:px-16 py-5 flex flex-col md:flex-row justify-between items-center gap-3 text-[11px] text-white/20">
+      <div className="px-4 sm:px-8 md:px-16 py-5 flex flex-col sm:flex-row justify-between items-center gap-3 text-[11px] text-white/20">
         <span>© {new Date().getFullYear()} SPRDLX. All rights reserved.</span>
         <div className="flex gap-6">
-          <a href="#" className="hover:text-white/50 transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-white/50 transition-colors">Terms of Use</a>
+          <span className="hover:text-white/50 transition-colors cursor-default">Privacy Policy</span>
+          <span className="hover:text-white/50 transition-colors cursor-default">Terms of Use</span>
         </div>
       </div>
     </footer>

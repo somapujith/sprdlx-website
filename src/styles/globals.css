@@ -46,7 +46,12 @@ body {
   color: var(--color-text-main);
   overflow-x: hidden;
   font-family: var(--font-sans);
-  cursor: none;
+}
+
+@media (pointer: fine) {
+  body {
+    cursor: none;
+  }
 }
 
 /* Hide scrollbar for lenis smooth scrolling */
@@ -70,36 +75,50 @@ html.lenis, html.lenis body {
   pointer-events: none;
 }
 
-/* Custom Cursor */
-#cursor {
-  position: fixed;
-  width: 10px;
-  height: 10px;
-  background: var(--color-primary);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  will-change: transform;
-  transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, background 0.2s;
-  mix-blend-mode: normal;
+/* Custom Cursor — hidden on touch devices */
+@media (pointer: fine) {
+  #cursor {
+    position: fixed;
+    width: 10px;
+    height: 10px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    will-change: transform;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: normal;
+  }
+
+  #cursor-ring {
+    position: fixed;
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(232, 93, 38, 0.5);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    will-change: transform;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, opacity 0.3s;
+  }
+
+  body:hover #cursor {
+    opacity: 1;
+  }
 }
 
-#cursor-ring {
-  position: fixed;
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid rgba(232, 93, 38, 0.5);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  will-change: transform;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s, opacity 0.3s;
-}
-
-body:hover #cursor {
-  opacity: 1;
+@media (pointer: coarse) {
+  #cursor, #cursor-ring {
+    display: none !important;
+  }
+  body {
+    cursor: auto;
+  }
+  * {
+    cursor: auto !important;
+  }
 }
 
 /* 3D transform utilities */
