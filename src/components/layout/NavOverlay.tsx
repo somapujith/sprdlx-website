@@ -18,7 +18,6 @@ export const NavOverlay: React.FC = () => {
   const navItems = [
     { label: t('nav.projects'), href: '#projects', tag: 'PORTFOLIO' },
     { label: t('nav.about'), href: '#about', tag: 'OUR STORY' },
-    { label: t('nav.services'), href: '#services', tag: 'WHAT WE DO' },
     { label: 'Team', href: '#team', tag: 'OUR PEOPLE' },
   ];
 

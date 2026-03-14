@@ -2,7 +2,6 @@
   "nav": {
     "home": "Trang chủ",
     "about": "Giới thiệu",
-    "services": "Dịch vụ",
     "projects": "Dự án nổi bật",
     "contact": "Bắt đầu xây dựng"
   },
@@ -17,11 +16,6 @@
     "stat_ventures_label": "Dự án đã khởi chạy",
     "stat_models_label": "Mô hình AI đã triển khai",
     "stat_builders_label": "Nhà xây dựng trong hệ sinh thái"
-  },
-  "services": {
-    "label": "năng lực của chúng tôi",
-    "heading": "Studio được xây dựng cho nhà xây dựng hiện đại",
-    "body": "Chúng tôi kết hợp thiết kế, AI và chiến lược kinh doanh thành một studio duy nhất — được xây dựng để ra mắt, mở rộng và bảo vệ tương lai cho thế hệ thương hiệu và sản phẩm tiếp theo."
   },
   "footer": {
     "tagline": "Tương lai được xây dựng, không phải chờ đợi.",

@@ -48,7 +48,6 @@ export const Navbar: React.FC<NavbarProps> = ({ transparent = true, visible = tr
   const navLinks = [
     { label: t('nav.home'), href: '#' },
     { label: t('nav.about'), href: '#about' },
-    { label: t('nav.services'), href: '#services' },
     { label: t('nav.projects'), href: '#projects' },
   ];
 

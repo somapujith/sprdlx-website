@@ -2,7 +2,6 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "services": "Services",
     "projects": "Featured Work",
     "contact": "Start Building"
   },
@@ -17,11 +16,6 @@
     "stat_ventures_label": "Ventures Launched",
     "stat_models_label": "AI Models Deployed",
     "stat_builders_label": "Builders in our Ecosystem"
-  },
-  "services": {
-    "label": "our capabilities",
-    "heading": "A Studio Built for Modern Builders",
-    "body": "We fuse design, AI, and venture strategy into a single studio — built to launch, scale, and future-proof the next generation of brands and products."
   },
   "footer": {
     "tagline": "The Future is Built, Not Waited For.",
