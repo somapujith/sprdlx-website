@@ -16,8 +16,8 @@ export const ContactForm: React.FC = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <form onSubmit={handleSubmit} className="space-y-4 xs:space-y-5 sm:space-y-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 xs:gap-5 sm:gap-6">
                 <div className="relative">
                     <input
                         type="text"
@@ -30,7 +30,7 @@ export const ContactForm: React.FC = () => {
                     />
                     <label
                         htmlFor="name"
-                        className="absolute left-0 -top-3.5 text-white/40 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-primary peer-focus:text-sm"
+                        className="absolute left-0 -top-3.5 text-white/40 text-xs xs:text-sm transition-all peer-placeholder-shown:text-sm xs:peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-primary peer-focus:text-xs xs:peer-focus:text-sm"
                     >
                         Your Name
                     </label>
@@ -47,7 +47,7 @@ export const ContactForm: React.FC = () => {
                     />
                     <label
                         htmlFor="message"
-                        className="absolute left-0 -top-3.5 text-white/40 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-primary peer-focus:text-sm"
+                        className="absolute left-0 -top-3.5 text-white/40 text-xs xs:text-sm transition-all peer-placeholder-shown:text-sm xs:peer-placeholder-shown:text-base peer-placeholder-shown:text-white/40 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-primary peer-focus:text-xs xs:peer-focus:text-sm"
                     >
                         What's on your mind?
                     </label>
@@ -56,13 +56,13 @@ export const ContactForm: React.FC = () => {
             <MagneticButton className="inline-flex w-fit">
                 <button
                     type="submit"
-                    className="inline-flex items-center gap-3 group"
+                    className="inline-flex items-center gap-2 xs:gap-3 group"
                 >
-                    <span className="text-[clamp(1rem,2vw,1.25rem)] text-white/50 hover:text-white border-b border-white/20 group-hover:border-primary pb-1 transition-all duration-300">
+                    <span className="text-[clamp(0.875rem,2vw,1.125rem)] text-white/50 hover:text-white border-b border-white/20 group-hover:border-primary pb-1 transition-all duration-300">
                         Send It
                     </span>
-                    <span className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300">
-                        <ArrowUpRight size={16} className="text-white/50 group-hover:text-white transition-colors" />
+                    <span className="w-8 xs:w-10 h-8 xs:h-10 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-primary group-hover:border-primary transition-all duration-300">
+                        <ArrowUpRight size={14} className="xs:size-4 text-white/50 group-hover:text-white transition-colors" />
                     </span>
                 </button>
             </MagneticButton>

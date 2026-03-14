@@ -37,7 +37,7 @@ export const HeroSection: React.FC = () => {
     <section
       ref={containerRef}
       id="hero"
-      className="relative h-screen min-h-[700px] flex flex-col justify-between overflow-hidden"
+      className="relative h-screen min-h-[600px] sm:min-h-[650px] md:min-h-[700px] flex flex-col justify-between overflow-hidden"
     >
       {/* Background SPRDLX watermark */}
       <motion.div

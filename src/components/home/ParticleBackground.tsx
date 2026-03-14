@@ -3,7 +3,12 @@ import * as THREE from 'three';
 
 const BRAND_COLOR = 0xE85D26;
 const SECONDARY_COLOR = 0xFFFFFF;
-const PARTICLE_COUNT = 2200;
+
+// Reduce particle count on mobile for better performance
+const getParticleCount = () => {
+  if (typeof window === 'undefined') return 2200;
+  return window.innerWidth < 768 ? 800 : 2200;
+};
 
 export const ParticleBackground: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -17,6 +22,7 @@ export const ParticleBackground: React.FC = () => {
       container.removeChild(container.firstChild);
     }
 
+    const PARTICLE_COUNT = getParticleCount();
     const mouse = { x: 0, y: 0 };
     let animationId: number;
     let t = 0;

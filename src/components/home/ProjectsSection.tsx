@@ -108,7 +108,7 @@ export const ProjectsSection: React.FC = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="hidden md:block fixed top-0 left-0 z-30 pointer-events-none will-change-transform"
+            className="hidden lg:block fixed top-0 left-0 z-30 pointer-events-none will-change-transform"
             style={{
               x: springX,
               y: springY,
@@ -116,7 +116,7 @@ export const ProjectsSection: React.FC = () => {
               translateY: '-50%',
             }}
           >
-            <div className="w-[320px] h-[220px] overflow-hidden rounded-md shadow-2xl">
+            <div className="w-[280px] sm:w-[320px] h-[180px] sm:h-[220px] overflow-hidden rounded-md shadow-2xl">
               <img
                 src={projects[activeIndex].images[0]}
                 alt={projects[activeIndex].title}
