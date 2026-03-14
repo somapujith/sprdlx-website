@@ -10,7 +10,7 @@ export const MarqueeSection: React.FC = () => {
             className="flex items-center gap-6 md:gap-10 px-3 md:px-4 text-[clamp(3rem,8vw,6rem)] font-sans font-extrabold tracking-tight leading-none"
           >
             <span
-              className="font-['Franie'] font-bold tracking-normal"
+              className="font-['Franie'] font-bold tracking-normal uppercase"
               style={{
                 WebkitTextStroke: '1.5px rgba(255,255,255,0.15)',
                 color: 'transparent',

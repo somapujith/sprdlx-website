@@ -47,7 +47,7 @@ export const HeroSection: React.FC = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, delay: 0.6, ease: 'easeOut' }}
-          className="text-[clamp(150px,28vw,420px)] font-sans md:font-['Franie'] font-bold tracking-tight leading-none text-white/[0.03]"
+          className="text-[clamp(80px,16vw,320px)] text-center font-sans md:font-['Franie'] font-bold tracking-tight leading-[0.85] text-white/[0.03] uppercase"
         >
           SPRDLX
         </motion.span>

@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
 interface TextScrubProps {
   text: string;
   className?: string;
+  customWordStyles?: Record<string, string>;
 }
 
 const ScrubWord: React.FC<{
@@ -11,17 +12,18 @@ const ScrubWord: React.FC<{
   progress: MotionValue<number>;
   start: number;
   end: number;
-}> = React.memo(({ word, progress, start, end }) => {
+  customStyle?: string;
+}> = React.memo(({ word, progress, start, end, customStyle }) => {
   const opacity = useTransform(progress, [start, end], [0.2, 1]);
   return (
-    <span className="relative">
+    <span className={`relative ${customStyle || ''}`}>
       <span className="absolute opacity-20">{word}</span>
       <motion.span style={{ opacity }}>{word}</motion.span>
     </span>
   );
 });
 
-export const TextScrub: React.FC<TextScrubProps> = ({ text, className = "" }) => {
+export const TextScrub: React.FC<TextScrubProps> = ({ text, className = "", customWordStyles = {} }) => {
   const container = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -40,6 +42,7 @@ export const TextScrub: React.FC<TextScrubProps> = ({ text, className = "" }) =>
           progress={scrollYProgress}
           start={i / words.length}
           end={(i + 1) / words.length}
+          customStyle={customWordStyles[word] || ""}
         />
       ))}
     </p>

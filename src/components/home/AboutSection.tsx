@@ -24,17 +24,6 @@ export const AboutSection: React.FC = () => {
       id="about"
       className="bg-black relative py-20 sm:py-[140px] md:py-[180px] px-4 sm:px-6 md:px-12 lg:px-16 overflow-hidden"
     >
-      {/* Large section identifier */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 0.03 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1.2 }}
-        className="absolute top-[80px] right-6 md:right-12 text-[clamp(100px,18vw,260px)] font-sans font-black leading-none tracking-tighter pointer-events-none select-none"
-      >
-        02
-      </motion.div>
-
       {/* Top: Headline layout */}
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0 mb-20 md:mb-32">
         {/* Left: Label + Headline */}
@@ -78,27 +67,64 @@ export const AboutSection: React.FC = () => {
           </h2>
         </div>
 
-        {/* Right: Typographic branding element */}
-        <div className="lg:col-span-4 lg:col-start-9 flex flex-col justify-end">
+        {/* Right: Abstract Tech Orb Visual */}
+        <div className="lg:col-span-5 flex justify-center lg:justify-end items-center mt-16 lg:mt-0">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 1, delay: 0.3 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="relative w-full max-w-[320px] aspect-square flex items-center justify-center group"
+            aria-hidden="true"
           >
-            <span
-              className="block text-[clamp(60px,10vw,140px)] font-['Franie'] font-bold tracking-tight leading-[0.85] text-white/[0.04]"
-            >
-              SPRDLX
-            </span>
-            <div className="flex items-center justify-between mt-4">
-              <span className="text-[10px] tracking-[0.2em] text-white/25 font-semibold uppercase">
-                Design × Technology
-              </span>
-              <span className="text-[10px] tracking-[0.15em] text-white/15 font-mono">
-                Est. 2024
-              </span>
+            {/* Grid background inside */}
+            <div className="absolute inset-8 rounded-full border border-white/5 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[20px_20px] overflow-hidden opacity-50 mask-[radial-gradient(circle,black,transparent_70%)]" />
+
+            {/* Architectural orbital rings */}
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 40, repeat: Infinity, ease: 'linear' }}
+              className="absolute inset-0 rounded-full border border-white/10 border-t-primary/50 border-r-transparent" 
+            />
+            <motion.div 
+              animate={{ rotate: -360 }}
+              transition={{ duration: 50, repeat: Infinity, ease: 'linear' }}
+              className="absolute inset-4 rounded-full border border-white/5 border-b-primary/30 border-l-transparent" 
+            />
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
+              className="absolute inset-8 rounded-full border border-white/5 border-t-white/30" 
+            />
+            
+            {/* Center spark/core */}
+            <div className="absolute w-32 h-32 bg-primary/10 rounded-full blur-[40px] group-hover:bg-primary/20 group-hover:blur-[50px] transition-all duration-700" />
+            
+            {/* Animated crosshair lines */}
+            <div className="absolute inset-0 flex items-center justify-center opacity-30">
+              <div className="w-[120%] h-[1px] bg-linear-to-r from-transparent via-white/40 to-transparent" />
+              <div className="absolute h-[120%] w-[1px] bg-linear-to-b from-transparent via-white/40 to-transparent" />
             </div>
+
+            {/* Center glowing dot */}
+            <div className="absolute w-2 h-2 bg-primary rounded-full shadow-[0_0_15px_rgba(232,93,38,1)]" />
+
+            {/* Circular Text */}
+            <motion.div 
+              animate={{ rotate: 360 }}
+              transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+              className="absolute inset-0"
+            >
+              <svg className="w-full h-full p-2" viewBox="0 0 100 100">
+                <path id="circlePath" d="M 50, 50 m -46, 0 a 46,46 0 1,1 92,0 a 46,46 0 1,1 -92,0" fill="none" />
+                <text className="text-[6.5px] uppercase tracking-[0.24em] fill-white/50 font-mono font-semibold">
+                  <textPath href="#circlePath" startOffset="0%">
+                    • ARTIFICIAL INTELLIGENCE • VENTURE BUILDING • PREMIUM DESIGN •
+                  </textPath>
+                </text>
+              </svg>
+            </motion.div>
+            
           </motion.div>
         </div>
       </div>
@@ -108,6 +134,9 @@ export const AboutSection: React.FC = () => {
         <TextScrub
           text="SPRDLX is an AI Design Studio & Venture Builder. By fusing data-driven strategy with world-class design, we launch the next generation of consumer startups — brands that resonate, products that scale, ventures that last."
           className="text-[clamp(18px,2.2vw,28px)] text-white leading-[1.6] font-medium tracking-[-0.01em]"
+          customWordStyles={{
+            "SPRDLX": "font-display text-primary tracking-normal font-normal opacity-100"
+          }}
         />
       </div>
 

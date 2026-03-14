@@ -120,19 +120,21 @@ export const TeamSection: React.FC = () => {
               </motion.span>
             </div>
           </h2>
-        </div>
-
-        {/* Right: description */}
-        <div className="lg:col-span-4 lg:col-start-9 lg:flex lg:flex-col lg:justify-end">
+          
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="text-[13px] md:text-[14px] text-white/35 leading-[1.8] max-w-[380px]"
+            className="text-[14px] md:text-[16px] text-white/50 leading-[1.8] max-w-[500px] mt-6"
           >
             A collective of designers, engineers, and strategists obsessed with building things that matter.
           </motion.p>
+        </div>
+
+        {/* Right: empty for now, could be used for a call to action or left empty to let the grid breathe */}
+        <div className="hidden lg:flex lg:col-span-4 lg:col-start-9 lg:flex-col lg:justify-end">
+          {/* Intentionally left blank to balance the composition, allowing the grid to pop */}
         </div>
       </div>
 
