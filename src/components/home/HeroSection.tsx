@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { MagneticButton } from '../shared/MagneticButton';
 
 export const HeroSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -99,57 +100,41 @@ export const HeroSection: React.FC = () => {
           <motion.div
             initial={{ y: '100%' }}
             animate={{ y: '0%' }}
-            transition={{ duration: 0.9, delay: 1.4, ease }}
-            className="flex items-center gap-3 md:gap-5 flex-wrap justify-center"
+            transition={{ duration: 0.8, delay: 1.4, ease }}
           >
-            <span className="text-[clamp(18px,3vw,36px)] font-sans font-black uppercase tracking-tight text-white/20">
-              Where Ideas
-            </span>
-            <span className="text-[clamp(18px,3vw,36px)] font-serif italic font-medium text-primary tracking-normal">
-              Become
-            </span>
-            <span className="text-[clamp(18px,3vw,36px)] font-sans font-black uppercase tracking-tight text-white/20">
-              Iconic
-            </span>
+            <p className="text-base md:text-lg text-white/60 max-w-md mx-auto">
+              We build category-defining AI products and brands that scale.
+            </p>
           </motion.div>
         </div>
 
-        {/* Divider */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1.2, delay: 1.7, ease }}
-          className="h-px bg-white/10 origin-center w-full max-w-[500px] mb-6 will-change-transform"
-        />
-
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 2.0, ease: 'easeOut' }}
-          className="text-[13px] md:text-[14px] text-white/30 max-w-[480px] leading-[1.85] font-medium mb-10"
-        >
-          By fusing data-driven strategy with world-class design, we launch the next generation of consumer startups and AI-native products.
-        </motion.p>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 2.2, ease: 'easeOut' }}
-        >
-          <a
-            href="#projects"
-            className="group inline-flex items-center gap-4 text-[11px] tracking-[0.15em] text-white/40 font-semibold uppercase transition-colors duration-300 hover:text-white"
-          >
-            <span className="w-10 h-10 rounded-full border border-white/15 flex items-center justify-center group-hover:bg-primary group-hover:border-primary group-hover:scale-110 transition-all duration-500">
-              <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="transition-transform duration-300 group-hover:translate-x-[1px] group-hover:-translate-y-[1px]">
-                <path d="M1.5 8.5L8.5 1.5M8.5 1.5H3M8.5 1.5V7" stroke="currentColor" strokeWidth="1.2" />
-              </svg>
-            </span>
-            View Our Work
-          </a>
-        </motion.div>
+        {/* CTA Button */}
+        <div className="overflow-hidden mt-4">
+            <motion.div
+                initial={{ y: '100%', opacity: 0 }}
+                animate={{ y: '0%', opacity: 1 }}
+                transition={{ duration: 0.8, delay: 1.6, ease }}
+            >
+                <a href="#projects">
+                    <MagneticButton className="group relative inline-flex items-center justify-center gap-2.5 rounded-full bg-primary px-8 py-4 text-sm font-semibold text-white transition-colors duration-300 hover:bg-primary/90">
+                        <span>View Our Work</span>
+                        <svg
+                            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"
+                            />
+                        </svg>
+                    </MagneticButton>
+                </a>
+            </motion.div>
+        </div>
       </motion.div>
 
       {/* Bottom bar */}
